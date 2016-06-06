@@ -11,4 +11,4 @@ This Project is for
 5. docker dependency view and running containers view for viewing avtive containers
 6. 
 
-![Alt text](https://github.com/Vinayakatk/dockerMonitoring/blob/master/Screenshot%202016-06-06%2011.33.22.png "Screenshot of the Tool")
+![Alt text](https://github.com/Vinayakatk/dockerMonitoring/blob/master/screen.png "Screenshot of the Tool")
