@@ -1,5 +1,7 @@
 # dockerMonitoring
 
+![Alt text](https://github.com/Vinayakatk/dockerMonitoring/blob/master/logoc.png "Screenshot of the Tool")
+
 This Project is for 
 
 1. Building images with all configurations necessary, an alternative for CLI (docker build)
