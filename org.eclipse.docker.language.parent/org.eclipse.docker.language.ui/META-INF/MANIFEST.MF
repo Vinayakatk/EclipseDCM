@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.eclipse.docker.language.ui
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.eclipse.docker.language.ui; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.docker.language,
+ org.eclipse.xtext.ui,
+ org.eclipse.xtext.ui.shared,
+ org.eclipse.xtext.ui.codetemplates.ui,
+ org.eclipse.ui.editors;bundle-version="3.5.0",
+ org.eclipse.ui.ide;bundle-version="3.5.0",
+ org.eclipse.ui,
+ org.eclipse.compare,
+ org.eclipse.xtext.builder,
+ org.eclipse.xtend.lib;resolution:=optional,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.docker.dependency;bundle-version="1.0.0",
+ org.eclipse.ui.forms;bundle-version="3.6.200",
+ org.eclipse.ui.console;bundle-version="3.6.100",
+ org.eclipse.wb.swt;bundle-version="1.8.0",
+ org.eclipse.docker.language.ide;bundle-version="1.0.0",
+ org.eclipse.equinox.event;bundle-version="1.3.100",
+ org.eclipse.osgi.services;bundle-version="3.5.0",
+ de.cau.cs.kieler.klighd.ui;bundle-version="0.8.0"
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.eclipse.docker.language.ui,
+ org.eclipse.docker.language.ui.contentassist,
+ org.eclipse.docker.language.ui.internal,
+ org.eclipse.docker.language.ui.launch,
+ org.eclipse.docker.language.ui.quickfix
+Bundle-Activator: org.eclipse.docker.language.ui.internal.ContainerActivator

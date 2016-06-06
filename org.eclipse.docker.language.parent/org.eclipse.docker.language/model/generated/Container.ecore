@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="container" nsURI="http://www.eclipse.org/docker/language/Container"
+    nsPrefix="container">
+  <eClassifiers xsi:type="ecore:EClass" name="Docker">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="imports" upperBound="-1"
+        eType="#//ImportContainer" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containerRegion" eType="#//ContainerSection"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="imageRegion" eType="#//ImageSection"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="runtime" eType="#//RunContainerDefination"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RunContainerDefination">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequence" unique="false"
+        upperBound="-1" eType="#//Container"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImportContainer">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="importedNamespace" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="importURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ContainerSection">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containers" upperBound="-1"
+        eType="#//Container" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImageSection">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="images" upperBound="-1"
+        eType="#//Image" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Image">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dockerFilelocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="forceRM" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="noCache" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="memory" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="memswap" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpusetcpus" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpushares" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="remove" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="quiet" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pull" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BuildArgs">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Container">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="image" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="binds" upperBound="-1"
+        eType="#//Bind" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="capabilityAdd" unique="false"
+        upperBound="-1" eType="#//Capability"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="capabilityDrop" unique="false"
+        upperBound="-1" eType="#//Capability"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="commands" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="containerIDFile" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpuPeriod" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpusetCpus" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpusetMems" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpuShares" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="devices" upperBound="-1"
+        eType="#//Device" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dns" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dnsSearch" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="domainName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="entrypoint" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="env" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exposedPorts" upperBound="-1"
+        eType="#//ExposedPort" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extraHosts" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="labels" upperBound="-1"
+        eType="#//Label" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="links" upperBound="-1"
+        eType="#//Link" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="macAddress" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="memory" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="memorySwap" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="disableNetwork" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="networkMode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="portBindings" upperBound="-1"
+        eType="#//PortBinding" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="privileged" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="publishAllPorts" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="readonlyRootfs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pidMode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="workingDir" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="user" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tty" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="restartPolicy" eType="#//RestartPolicy"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="volumes" upperBound="-1"
+        eType="#//Volume" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="volumesFrom" upperBound="-1"
+        eType="#//VolumesFrom" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ulimits" upperBound="-1"
+        eType="#//Ulimit" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VolumesFrom">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="container" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessMode" eType="#//AccessMode"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RestartPolicy">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumRetryCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PortBinding">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="binding" eType="#//Binding"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exposedPort" eType="#//ExposedPort"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Binding">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hostIP" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hostPort" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Link">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="containerLink" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Ulimit">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="soft" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hard" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Label">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExposedPort">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="protocol" eType="#//InternalProtocol"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="InternalProtocol">
+    <eLiterals name="TCP" literal="TCP"/>
+    <eLiterals name="UDP" value="1" literal="UDP"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Device">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cGroupPermissions" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pathOnHost" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pathInContainer" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AccessMode">
+    <eLiterals name="rw" literal="rw"/>
+    <eLiterals name="ro" value="1" literal="ro"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Capability">
+    <eLiterals name="ALL" literal="ALL"/>
+    <eLiterals name="AUDIT_CONTROL" value="1" literal="AUDIT_CONTROL"/>
+    <eLiterals name="AUDIT_WRITE" value="2" literal="AUDIT_WRITE"/>
+    <eLiterals name="BLOCK_SUSPEND" value="3" literal="BLOCK_SUSPEND"/>
+    <eLiterals name="CHOWN" value="4" literal="CHOWN"/>
+    <eLiterals name="DAC_OVERRIDE" value="5" literal="DAC_OVERRIDE"/>
+    <eLiterals name="DAC_READ_SEARCH" value="6" literal="DAC_READ_SEARCH"/>
+    <eLiterals name="FOWNER" value="7" literal="FOWNER"/>
+    <eLiterals name="FSETID" value="8" literal="FSETID"/>
+    <eLiterals name="IPC_LOCK" value="9" literal="IPC_LOCK"/>
+    <eLiterals name="IPC_OWNER" value="10" literal="IPC_OWNER"/>
+    <eLiterals name="KILL" value="11" literal="KILL"/>
+    <eLiterals name="LEASE" value="12" literal="LEASE"/>
+    <eLiterals name="LINUX_IMMUTABLE" value="13" literal="LINUX_IMMUTABLE"/>
+    <eLiterals name="MAC_ADMIN" value="14" literal="MAC_ADMIN"/>
+    <eLiterals name="MAC_OVERRIDE" value="15" literal="MAC_OVERRIDE"/>
+    <eLiterals name="MKNOD" value="16" literal="MKNOD"/>
+    <eLiterals name="NET_ADMIN" value="17" literal="NET_ADMIN"/>
+    <eLiterals name="NET_BIND_SERVICE" value="18" literal="NET_BIND_SERVICE"/>
+    <eLiterals name="NET_BROADCAST" value="19" literal="NET_BROADCAST"/>
+    <eLiterals name="NET_RAW" value="20" literal="NET_RAW"/>
+    <eLiterals name="SETFCAP" value="21" literal="SETFCAP"/>
+    <eLiterals name="SETGID" value="22" literal="SETGID"/>
+    <eLiterals name="SETPCAP" value="23" literal="SETPCAP"/>
+    <eLiterals name="SETUID" value="24" literal="SETUID"/>
+    <eLiterals name="SYS_ADMIN" value="25" literal="SYS_ADMIN"/>
+    <eLiterals name="SYS_BOOT" value="26" literal="SYS_BOOT"/>
+    <eLiterals name="SYS_CHROOT" value="27" literal="SYS_CHROOT"/>
+    <eLiterals name="SYSLOG" value="28" literal="SYSLOG"/>
+    <eLiterals name="SYS_MODULE" value="29" literal="SYS_MODULE"/>
+    <eLiterals name="SYS_NICE" value="30" literal="SYS_NICE"/>
+    <eLiterals name="SYS_PACCT" value="31" literal="SYS_PACCT"/>
+    <eLiterals name="SYS_PTRACE" value="32" literal="SYS_PTRACE"/>
+    <eLiterals name="SYS_RAWIO" value="33" literal="SYS_RAWIO"/>
+    <eLiterals name="SYS_RESOURCE" value="34" literal="SYS_RESOURCE"/>
+    <eLiterals name="SYS_TIME" value="35" literal="SYS_TIME"/>
+    <eLiterals name="SYS_TTY_CONFIG" value="36" literal="SYS_TTY_CONFIG"/>
+    <eLiterals name="WAKE_ALARM" value="37" literal="WAKE_ALARM"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Bind">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="volume" eType="#//Volume"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessMode1" eType="#//AccessMode"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Volume">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

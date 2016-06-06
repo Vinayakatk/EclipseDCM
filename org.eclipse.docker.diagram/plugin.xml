@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="de.cau.cs.kieler.klighd.diagramSyntheses">
+   <diagramSynthesis
+         class="de.cau.cs.kieler.klighd.syntheses.GuiceBasedSynthesisFactory:org.eclipse.docker.diagram.DockerDiagramSynthesis"
+         id="org.eclipse.docker.diagram.DockerDiagramSynthesis">
+   </diagramSynthesis>
+   </extension>
+<extension
+      point="org.eclipse.ui.commands">
+   <category
+         description="Docker diagrams"
+         id="org.eclipse.docker.diagram.DockerDiagrams"
+         name="DockerDiagrams">
+   </category>
+   <command
+         categoryId="org.eclipse.docker.diagram.DockerDiagrams"
+         defaultHandler="org.eclipse.docker.diagram.OpenDiagramHandler"
+         description="Primitive helper command that opens KLighD-based Docker diagrams."
+         id="org.eclipse.docker.diagram.openDockerDiagram"
+         name="Open Docker diagram">
+   </command>
+</extension>
+
+<extension
+      point="org.eclipse.ui.menus">
+   <menuContribution
+         locationURI="popup:org.eclipse.ui.popup.any?before=additions">
+      <command
+            commandId="org.eclipse.docker.diagram.openDockerDiagram"
+            label="Open Docker diagram"
+            style="push">
+         <visibleWhen
+               checkEnabled="false">
+            <reference
+                  definitionId="org.eclipse.docker.language.Container.Editor.opened">
+            </reference>
+         </visibleWhen>
+      </command>
+   </menuContribution>
+</extension>
+
+</plugin>

@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: monitoring
+Bundle-SymbolicName: org.eclipse.docker.monitoring;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.eclipse.docker.monitoring.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.forms,
+ org.eclipse.xtend.lib.macro,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtend.lib,
+ org.eclipse.docker.language.ui;visibility:=reexport,
+ org.eclipse.docker.dependency,
+ com.google.inject;bundle-version="3.0.0",
+ com.google.guava,
+ org.eclipse.docker.language;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .,
+ icons/jfxrt.jar,
+ icons/jfxswt.jar
+

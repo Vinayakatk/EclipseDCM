@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Docker Monitoring"
+            id="dockerMonitoring">
+      </category>
+      <view
+            category="dockerMonitoring"
+            class="org.eclipse.docker.monitoring.view.MonitorView"
+            icon="icons/docker.jpg"
+            id="org.eclipse.docker.monitoring.view"
+            name="Container Monitoring">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               id="org.eclipse.docker.monitoring.view"
+               minimized="true"
+               moveable="true"
+               ratio="0.5"
+               relationship="right"
+               relative="org.eclipse.ui.views.ProblemView"
+               showTitle="true"
+               standalone="true">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+
+</plugin>

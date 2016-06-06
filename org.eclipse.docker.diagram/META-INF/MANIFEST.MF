@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.eclipse.docker.diagram
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.eclipse.docker.diagram; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: javax.inject,
+ com.google.guava,
+ com.google.inject,
+ org.eclipse.xtext.xbase.lib,
+ de.cau.cs.kieler.core.krendering,
+ de.cau.cs.kieler.core.krendering.extensions,
+ de.cau.cs.kieler.kiml,
+ de.cau.cs.kieler.klay.layered,
+ de.cau.cs.kieler.klighd,
+ de.cau.cs.kieler.klighd.piccolo,
+ de.cau.cs.kieler.klighd.ui,
+ de.cau.cs.kieler.klighd.ui.contrib3x,
+ de.cau.cs.kieler.kiml.graphviz.layouter;resolution:=optional,
+ org.eclipse.ui,
+ org.eclipse.ui.ide.application,
+ org.eclipse.ui.navigator.resources,
+ org.eclipse.ui.views.log,
+ org.eclipse.core.resources,
+ org.eclipse.emf,
+ org.eclipse.xtext.ui;resolution:=optional,
+ org.eclipse.docker.language;bundle-version="1.0.0",
+ org.eclipse.docker.dependency;bundle-version="1.0.0",
+ org.eclipse.docker.language.ui;bundle-version="1.0.0"
+Import-Package: org.eclipse.docker.language.container
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
