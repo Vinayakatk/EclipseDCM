@@ -1,6 +1,6 @@
 # Docker Container Monitoring
 
-![Alt text](https://github.com/Vinayakatk/dockerMonitoring/blob/master/logo3.png "Screenshot of the Tool")
+![Alt text](https://github.com/Vinayakatk/dockerMonitoring/blob/master/dcm.png "Screenshot of the Tool")
 
 This Project is for 
 
