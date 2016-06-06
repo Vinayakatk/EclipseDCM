@@ -1,4 +1,4 @@
-# dockerMonitoring
+# Docker Container Monitoring
 
 ![Alt text](https://github.com/Vinayakatk/dockerMonitoring/blob/master/logo2.png "Screenshot of the Tool")
 
