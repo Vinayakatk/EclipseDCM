@@ -165,7 +165,8 @@ class DockerInterpreterImpl implements DockerInterpreter {
 			container.ulimits.interpretULimits(command)
 		}
 		var response=command.exec
-		println(response.id)
+		dockerClient.startContainerCmd(response.id).exec
+		
 
 	}
 
