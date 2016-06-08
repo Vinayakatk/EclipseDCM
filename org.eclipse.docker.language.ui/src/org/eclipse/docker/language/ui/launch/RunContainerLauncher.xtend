@@ -26,6 +26,7 @@ import org.eclipse.docker.language.DockerInterpreter
 import org.eclipse.xtext.parser.IEncodingProvider
 import org.eclipse.ui.IFileEditorInput
 import com.google.inject.Provider
+import org.eclipse.docker.language.ui.DockerRunDialog
 
 class RunContainerLauncher implements ILaunchShortcut, ILaunchShortcut2, ILaunchConfigurationDelegate {
 	@Inject DockerInterpreter interpreter
@@ -112,6 +113,8 @@ class RunContainerLauncher implements ILaunchShortcut, ILaunchShortcut2, ILaunch
 							var Resource resource = instance.getResource(element, true)
 
 							val docker = resource.contents.get(0) as Docker
+							var dialog = new DockerRunDialog(Display.current.activeShell,interpreter)
+							
 							interpreter.interpret(resource)
 
 						

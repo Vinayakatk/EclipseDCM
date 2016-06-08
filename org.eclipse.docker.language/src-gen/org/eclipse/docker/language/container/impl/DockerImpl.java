@@ -5,6 +5,7 @@ package org.eclipse.docker.language.container.impl;
 
 import java.util.Collection;
 
+import org.eclipse.docker.language.container.BuildImagesExecution;
 import org.eclipse.docker.language.container.ContainerPackage;
 import org.eclipse.docker.language.container.ContainerSection;
 import org.eclipse.docker.language.container.Docker;
@@ -37,6 +38,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.docker.language.container.impl.DockerImpl#getImports <em>Imports</em>}</li>
  *   <li>{@link org.eclipse.docker.language.container.impl.DockerImpl#getContainerRegion <em>Container Region</em>}</li>
  *   <li>{@link org.eclipse.docker.language.container.impl.DockerImpl#getImageRegion <em>Image Region</em>}</li>
+ *   <li>{@link org.eclipse.docker.language.container.impl.DockerImpl#getBuild <em>Build</em>}</li>
  *   <li>{@link org.eclipse.docker.language.container.impl.DockerImpl#getRuntime <em>Runtime</em>}</li>
  * </ul>
  *
@@ -73,6 +75,16 @@ public class DockerImpl extends MinimalEObjectImpl.Container implements Docker
    * @ordered
    */
   protected ImageSection imageRegion;
+
+  /**
+   * The cached value of the '{@link #getBuild() <em>Build</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getBuild()
+   * @generated
+   * @ordered
+   */
+  protected BuildImagesExecution build;
 
   /**
    * The cached value of the '{@link #getRuntime() <em>Runtime</em>}' containment reference.
@@ -220,6 +232,54 @@ public class DockerImpl extends MinimalEObjectImpl.Container implements Docker
    * <!-- end-user-doc -->
    * @generated
    */
+  public BuildImagesExecution getBuild()
+  {
+    return build;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetBuild(BuildImagesExecution newBuild, NotificationChain msgs)
+  {
+    BuildImagesExecution oldBuild = build;
+    build = newBuild;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ContainerPackage.DOCKER__BUILD, oldBuild, newBuild);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setBuild(BuildImagesExecution newBuild)
+  {
+    if (newBuild != build)
+    {
+      NotificationChain msgs = null;
+      if (build != null)
+        msgs = ((InternalEObject)build).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ContainerPackage.DOCKER__BUILD, null, msgs);
+      if (newBuild != null)
+        msgs = ((InternalEObject)newBuild).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ContainerPackage.DOCKER__BUILD, null, msgs);
+      msgs = basicSetBuild(newBuild, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ContainerPackage.DOCKER__BUILD, newBuild, newBuild));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public RunContainerDefination getRuntime()
   {
     return runtime;
@@ -279,6 +339,8 @@ public class DockerImpl extends MinimalEObjectImpl.Container implements Docker
         return basicSetContainerRegion(null, msgs);
       case ContainerPackage.DOCKER__IMAGE_REGION:
         return basicSetImageRegion(null, msgs);
+      case ContainerPackage.DOCKER__BUILD:
+        return basicSetBuild(null, msgs);
       case ContainerPackage.DOCKER__RUNTIME:
         return basicSetRuntime(null, msgs);
     }
@@ -301,6 +363,8 @@ public class DockerImpl extends MinimalEObjectImpl.Container implements Docker
         return getContainerRegion();
       case ContainerPackage.DOCKER__IMAGE_REGION:
         return getImageRegion();
+      case ContainerPackage.DOCKER__BUILD:
+        return getBuild();
       case ContainerPackage.DOCKER__RUNTIME:
         return getRuntime();
     }
@@ -328,6 +392,9 @@ public class DockerImpl extends MinimalEObjectImpl.Container implements Docker
       case ContainerPackage.DOCKER__IMAGE_REGION:
         setImageRegion((ImageSection)newValue);
         return;
+      case ContainerPackage.DOCKER__BUILD:
+        setBuild((BuildImagesExecution)newValue);
+        return;
       case ContainerPackage.DOCKER__RUNTIME:
         setRuntime((RunContainerDefination)newValue);
         return;
@@ -354,6 +421,9 @@ public class DockerImpl extends MinimalEObjectImpl.Container implements Docker
       case ContainerPackage.DOCKER__IMAGE_REGION:
         setImageRegion((ImageSection)null);
         return;
+      case ContainerPackage.DOCKER__BUILD:
+        setBuild((BuildImagesExecution)null);
+        return;
       case ContainerPackage.DOCKER__RUNTIME:
         setRuntime((RunContainerDefination)null);
         return;
@@ -377,6 +447,8 @@ public class DockerImpl extends MinimalEObjectImpl.Container implements Docker
         return containerRegion != null;
       case ContainerPackage.DOCKER__IMAGE_REGION:
         return imageRegion != null;
+      case ContainerPackage.DOCKER__BUILD:
+        return build != null;
       case ContainerPackage.DOCKER__RUNTIME:
         return runtime != null;
     }

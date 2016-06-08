@@ -169,9 +169,28 @@ ruleDocker returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDockerAccess().getRuntimeRunContainerDefinationParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getDockerAccess().getBuildBuildImagesExecutionParserRuleCall_2_0());
 				}
-				lv_runtime_4_0=ruleRunContainerDefination
+				lv_build_4_0=ruleBuildImagesExecution
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getDockerRule());
+					}
+					set(
+						$current,
+						"build",
+						lv_build_4_0,
+						"org.eclipse.docker.language.Container.BuildImagesExecution");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getDockerAccess().getRuntimeRunContainerDefinationParserRuleCall_3_0());
+				}
+				lv_runtime_5_0=ruleRunContainerDefination
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDockerRule());
@@ -179,12 +198,75 @@ ruleDocker returns [EObject current=null]
 					set(
 						$current,
 						"runtime",
-						lv_runtime_4_0,
+						lv_runtime_5_0,
 						"org.eclipse.docker.language.Container.RunContainerDefination");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
+	)
+;
+
+// Entry rule entryRuleBuildImagesExecution
+entryRuleBuildImagesExecution returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getBuildImagesExecutionRule()); }
+	iv_ruleBuildImagesExecution=ruleBuildImagesExecution
+	{ $current=$iv_ruleBuildImagesExecution.current; }
+	EOF;
+
+// Rule BuildImagesExecution
+ruleBuildImagesExecution returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='Build Execution Sequence :'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getBuildImagesExecutionAccess().getBuildExecutionSequenceKeyword_0());
+		}
+		otherlv_1='Start'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getBuildImagesExecutionAccess().getStartKeyword_1());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getBuildImagesExecutionRule());
+					}
+				}
+				otherlv_2=RULE_ID
+				{
+					newLeafNode(otherlv_2, grammarAccess.getBuildImagesExecutionAccess().getSequenceImageCrossReference_2_0());
+				}
+			)
+		)
+		(
+			otherlv_3='->'
+			{
+				newLeafNode(otherlv_3, grammarAccess.getBuildImagesExecutionAccess().getHyphenMinusGreaterThanSignKeyword_3_0());
+			}
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getBuildImagesExecutionRule());
+						}
+					}
+					otherlv_4=RULE_ID
+					{
+						newLeafNode(otherlv_4, grammarAccess.getBuildImagesExecutionAccess().getSequenceImageCrossReference_3_1_0());
+					}
+				)
+			)
+		)*
+		otherlv_5='End'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getBuildImagesExecutionAccess().getEndKeyword_4());
+		}
 	)
 ;
 
@@ -570,9 +652,9 @@ ruleImage returns [EObject current=null]
 		}
 		(
 			(
-				lv_name_1_0=RULE_STRING
+				lv_name_1_0=RULE_ID
 				{
-					newLeafNode(lv_name_1_0, grammarAccess.getImageAccess().getNameSTRINGTerminalRuleCall_1_0());
+					newLeafNode(lv_name_1_0, grammarAccess.getImageAccess().getNameIDTerminalRuleCall_1_0());
 				}
 				{
 					if ($current==null) {
@@ -582,7 +664,7 @@ ruleImage returns [EObject current=null]
 						$current,
 						"name",
 						lv_name_1_0,
-						"org.eclipse.xtext.common.Terminals.STRING");
+						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)

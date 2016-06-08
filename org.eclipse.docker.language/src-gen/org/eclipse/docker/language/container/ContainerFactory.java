@@ -33,6 +33,15 @@ public interface ContainerFactory extends EFactory
   Docker createDocker();
 
   /**
+   * Returns a new object of class '<em>Build Images Execution</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Build Images Execution</em>'.
+   * @generated
+   */
+  BuildImagesExecution createBuildImagesExecution();
+
+  /**
    * Returns a new object of class '<em>Run Container Defination</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

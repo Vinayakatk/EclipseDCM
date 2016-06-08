@@ -96,13 +96,22 @@ public interface ContainerPackage extends EPackage
   int DOCKER__IMAGE_REGION = 2;
 
   /**
+   * The feature id for the '<em><b>Build</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOCKER__BUILD = 3;
+
+  /**
    * The feature id for the '<em><b>Runtime</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOCKER__RUNTIME = 3;
+  int DOCKER__RUNTIME = 4;
 
   /**
    * The number of structural features of the '<em>Docker</em>' class.
@@ -111,7 +120,35 @@ public interface ContainerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOCKER_FEATURE_COUNT = 4;
+  int DOCKER_FEATURE_COUNT = 5;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.docker.language.container.impl.BuildImagesExecutionImpl <em>Build Images Execution</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.docker.language.container.impl.BuildImagesExecutionImpl
+   * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getBuildImagesExecution()
+   * @generated
+   */
+  int BUILD_IMAGES_EXECUTION = 1;
+
+  /**
+   * The feature id for the '<em><b>Sequence</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BUILD_IMAGES_EXECUTION__SEQUENCE = 0;
+
+  /**
+   * The number of structural features of the '<em>Build Images Execution</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BUILD_IMAGES_EXECUTION_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.eclipse.docker.language.container.impl.RunContainerDefinationImpl <em>Run Container Defination</em>}' class.
@@ -121,7 +158,7 @@ public interface ContainerPackage extends EPackage
    * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getRunContainerDefination()
    * @generated
    */
-  int RUN_CONTAINER_DEFINATION = 1;
+  int RUN_CONTAINER_DEFINATION = 2;
 
   /**
    * The feature id for the '<em><b>Sequence</b></em>' reference list.
@@ -149,7 +186,7 @@ public interface ContainerPackage extends EPackage
    * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getImportContainer()
    * @generated
    */
-  int IMPORT_CONTAINER = 2;
+  int IMPORT_CONTAINER = 3;
 
   /**
    * The feature id for the '<em><b>Imported Namespace</b></em>' attribute.
@@ -186,7 +223,7 @@ public interface ContainerPackage extends EPackage
    * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getContainerSection()
    * @generated
    */
-  int CONTAINER_SECTION = 3;
+  int CONTAINER_SECTION = 4;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -223,7 +260,7 @@ public interface ContainerPackage extends EPackage
    * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getImageSection()
    * @generated
    */
-  int IMAGE_SECTION = 4;
+  int IMAGE_SECTION = 5;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -260,7 +297,7 @@ public interface ContainerPackage extends EPackage
    * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getImage()
    * @generated
    */
-  int IMAGE = 5;
+  int IMAGE = 6;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -387,7 +424,7 @@ public interface ContainerPackage extends EPackage
    * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getBuildArgs()
    * @generated
    */
-  int BUILD_ARGS = 6;
+  int BUILD_ARGS = 7;
 
   /**
    * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -424,7 +461,7 @@ public interface ContainerPackage extends EPackage
    * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getContainer()
    * @generated
    */
-  int CONTAINER = 7;
+  int CONTAINER = 8;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -785,7 +822,7 @@ public interface ContainerPackage extends EPackage
    * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getVolumesFrom()
    * @generated
    */
-  int VOLUMES_FROM = 8;
+  int VOLUMES_FROM = 9;
 
   /**
    * The feature id for the '<em><b>Container</b></em>' attribute.
@@ -822,7 +859,7 @@ public interface ContainerPackage extends EPackage
    * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getRestartPolicy()
    * @generated
    */
-  int RESTART_POLICY = 9;
+  int RESTART_POLICY = 10;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -859,7 +896,7 @@ public interface ContainerPackage extends EPackage
    * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getPortBinding()
    * @generated
    */
-  int PORT_BINDING = 10;
+  int PORT_BINDING = 11;
 
   /**
    * The feature id for the '<em><b>Binding</b></em>' containment reference.
@@ -896,7 +933,7 @@ public interface ContainerPackage extends EPackage
    * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getBinding()
    * @generated
    */
-  int BINDING = 11;
+  int BINDING = 12;
 
   /**
    * The feature id for the '<em><b>Host IP</b></em>' attribute.
@@ -933,7 +970,7 @@ public interface ContainerPackage extends EPackage
    * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getLink()
    * @generated
    */
-  int LINK = 12;
+  int LINK = 13;
 
   /**
    * The feature id for the '<em><b>Container Link</b></em>' attribute.
@@ -970,7 +1007,7 @@ public interface ContainerPackage extends EPackage
    * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getUlimit()
    * @generated
    */
-  int ULIMIT = 13;
+  int ULIMIT = 14;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1016,7 +1053,7 @@ public interface ContainerPackage extends EPackage
    * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getLabel()
    * @generated
    */
-  int LABEL = 14;
+  int LABEL = 15;
 
   /**
    * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -1053,7 +1090,7 @@ public interface ContainerPackage extends EPackage
    * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getExposedPort()
    * @generated
    */
-  int EXPOSED_PORT = 15;
+  int EXPOSED_PORT = 16;
 
   /**
    * The feature id for the '<em><b>Port</b></em>' attribute.
@@ -1090,7 +1127,7 @@ public interface ContainerPackage extends EPackage
    * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getDevice()
    * @generated
    */
-  int DEVICE = 16;
+  int DEVICE = 17;
 
   /**
    * The feature id for the '<em><b>CGroup Permissions</b></em>' attribute.
@@ -1136,7 +1173,7 @@ public interface ContainerPackage extends EPackage
    * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getBind()
    * @generated
    */
-  int BIND = 17;
+  int BIND = 18;
 
   /**
    * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -1182,7 +1219,7 @@ public interface ContainerPackage extends EPackage
    * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getVolume()
    * @generated
    */
-  int VOLUME = 18;
+  int VOLUME = 19;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -1210,7 +1247,7 @@ public interface ContainerPackage extends EPackage
    * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getInternalProtocol()
    * @generated
    */
-  int INTERNAL_PROTOCOL = 19;
+  int INTERNAL_PROTOCOL = 20;
 
   /**
    * The meta object id for the '{@link org.eclipse.docker.language.container.AccessMode <em>Access Mode</em>}' enum.
@@ -1220,7 +1257,7 @@ public interface ContainerPackage extends EPackage
    * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getAccessMode()
    * @generated
    */
-  int ACCESS_MODE = 20;
+  int ACCESS_MODE = 21;
 
   /**
    * The meta object id for the '{@link org.eclipse.docker.language.container.Capability <em>Capability</em>}' enum.
@@ -1230,7 +1267,7 @@ public interface ContainerPackage extends EPackage
    * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getCapability()
    * @generated
    */
-  int CAPABILITY = 21;
+  int CAPABILITY = 22;
 
 
   /**
@@ -1277,6 +1314,17 @@ public interface ContainerPackage extends EPackage
   EReference getDocker_ImageRegion();
 
   /**
+   * Returns the meta object for the containment reference '{@link org.eclipse.docker.language.container.Docker#getBuild <em>Build</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Build</em>'.
+   * @see org.eclipse.docker.language.container.Docker#getBuild()
+   * @see #getDocker()
+   * @generated
+   */
+  EReference getDocker_Build();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.eclipse.docker.language.container.Docker#getRuntime <em>Runtime</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1286,6 +1334,27 @@ public interface ContainerPackage extends EPackage
    * @generated
    */
   EReference getDocker_Runtime();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.docker.language.container.BuildImagesExecution <em>Build Images Execution</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Build Images Execution</em>'.
+   * @see org.eclipse.docker.language.container.BuildImagesExecution
+   * @generated
+   */
+  EClass getBuildImagesExecution();
+
+  /**
+   * Returns the meta object for the reference list '{@link org.eclipse.docker.language.container.BuildImagesExecution#getSequence <em>Sequence</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Sequence</em>'.
+   * @see org.eclipse.docker.language.container.BuildImagesExecution#getSequence()
+   * @see #getBuildImagesExecution()
+   * @generated
+   */
+  EReference getBuildImagesExecution_Sequence();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.docker.language.container.RunContainerDefination <em>Run Container Defination</em>}'.
@@ -2468,12 +2537,38 @@ public interface ContainerPackage extends EPackage
     EReference DOCKER__IMAGE_REGION = eINSTANCE.getDocker_ImageRegion();
 
     /**
+     * The meta object literal for the '<em><b>Build</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DOCKER__BUILD = eINSTANCE.getDocker_Build();
+
+    /**
      * The meta object literal for the '<em><b>Runtime</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference DOCKER__RUNTIME = eINSTANCE.getDocker_Runtime();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.docker.language.container.impl.BuildImagesExecutionImpl <em>Build Images Execution</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.docker.language.container.impl.BuildImagesExecutionImpl
+     * @see org.eclipse.docker.language.container.impl.ContainerPackageImpl#getBuildImagesExecution()
+     * @generated
+     */
+    EClass BUILD_IMAGES_EXECUTION = eINSTANCE.getBuildImagesExecution();
+
+    /**
+     * The meta object literal for the '<em><b>Sequence</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference BUILD_IMAGES_EXECUTION__SEQUENCE = eINSTANCE.getBuildImagesExecution_Sequence();
 
     /**
      * The meta object literal for the '{@link org.eclipse.docker.language.container.impl.RunContainerDefinationImpl <em>Run Container Defination</em>}' class.

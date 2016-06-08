@@ -26,6 +26,10 @@ class ContainerScopeProvider extends AbstractContainerScopeProvider {
 			var containers = (EcoreUtil2.getRootContainer(context) as Docker).containerRegion.containers;
 			return Scopes.scopeFor(containers,scope)
 		}
+		if (reference == ContainerPackage.eINSTANCE.buildImagesExecution_Sequence) {
+			var images = (EcoreUtil2.getRootContainer(context) as Docker).imageRegion.images;
+			return Scopes.scopeFor(images,scope)
+		}
 		scope
 	}
 

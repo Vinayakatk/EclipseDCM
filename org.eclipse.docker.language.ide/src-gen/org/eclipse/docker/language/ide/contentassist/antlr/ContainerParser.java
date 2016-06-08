@@ -41,6 +41,8 @@ public class ContainerParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAccessModeAccess().getAlternatives(), "rule__AccessMode__Alternatives");
 					put(grammarAccess.getCapabilityAccess().getAlternatives(), "rule__Capability__Alternatives");
 					put(grammarAccess.getDockerAccess().getGroup(), "rule__Docker__Group__0");
+					put(grammarAccess.getBuildImagesExecutionAccess().getGroup(), "rule__BuildImagesExecution__Group__0");
+					put(grammarAccess.getBuildImagesExecutionAccess().getGroup_3(), "rule__BuildImagesExecution__Group_3__0");
 					put(grammarAccess.getRunContainerDefinationAccess().getGroup(), "rule__RunContainerDefination__Group__0");
 					put(grammarAccess.getRunContainerDefinationAccess().getGroup_3(), "rule__RunContainerDefination__Group_3__0");
 					put(grammarAccess.getImportContainerAccess().getGroup(), "rule__ImportContainer__Group__0");
@@ -118,7 +120,10 @@ public class ContainerParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDockerAccess().getImportsAssignment_0(), "rule__Docker__ImportsAssignment_0");
 					put(grammarAccess.getDockerAccess().getContainerRegionAssignment_1_0(), "rule__Docker__ContainerRegionAssignment_1_0");
 					put(grammarAccess.getDockerAccess().getImageRegionAssignment_1_1(), "rule__Docker__ImageRegionAssignment_1_1");
-					put(grammarAccess.getDockerAccess().getRuntimeAssignment_2(), "rule__Docker__RuntimeAssignment_2");
+					put(grammarAccess.getDockerAccess().getBuildAssignment_2(), "rule__Docker__BuildAssignment_2");
+					put(grammarAccess.getDockerAccess().getRuntimeAssignment_3(), "rule__Docker__RuntimeAssignment_3");
+					put(grammarAccess.getBuildImagesExecutionAccess().getSequenceAssignment_2(), "rule__BuildImagesExecution__SequenceAssignment_2");
+					put(grammarAccess.getBuildImagesExecutionAccess().getSequenceAssignment_3_1(), "rule__BuildImagesExecution__SequenceAssignment_3_1");
 					put(grammarAccess.getRunContainerDefinationAccess().getSequenceAssignment_2(), "rule__RunContainerDefination__SequenceAssignment_2");
 					put(grammarAccess.getRunContainerDefinationAccess().getSequenceAssignment_3_1(), "rule__RunContainerDefination__SequenceAssignment_3_1");
 					put(grammarAccess.getImportContainerAccess().getImportedNamespaceAssignment_1_0(), "rule__ImportContainer__ImportedNamespaceAssignment_1_0");

@@ -80,6 +80,13 @@ public class ContainerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ContainerPackage.BUILD_IMAGES_EXECUTION:
+      {
+        BuildImagesExecution buildImagesExecution = (BuildImagesExecution)theEObject;
+        T result = caseBuildImagesExecution(buildImagesExecution);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ContainerPackage.RUN_CONTAINER_DEFINATION:
       {
         RunContainerDefination runContainerDefination = (RunContainerDefination)theEObject;
@@ -222,6 +229,22 @@ public class ContainerSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseDocker(Docker object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Build Images Execution</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Build Images Execution</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBuildImagesExecution(BuildImagesExecution object)
   {
     return null;
   }

@@ -7,6 +7,7 @@ import org.eclipse.docker.language.container.AccessMode;
 import org.eclipse.docker.language.container.Bind;
 import org.eclipse.docker.language.container.Binding;
 import org.eclipse.docker.language.container.BuildArgs;
+import org.eclipse.docker.language.container.BuildImagesExecution;
 import org.eclipse.docker.language.container.Capability;
 import org.eclipse.docker.language.container.ContainerFactory;
 import org.eclipse.docker.language.container.ContainerPackage;
@@ -49,6 +50,13 @@ public class ContainerPackageImpl extends EPackageImpl implements ContainerPacka
    * @generated
    */
   private EClass dockerEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass buildImagesExecutionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -305,9 +313,39 @@ public class ContainerPackageImpl extends EPackageImpl implements ContainerPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDocker_Runtime()
+  public EReference getDocker_Build()
   {
     return (EReference)dockerEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDocker_Runtime()
+  {
+    return (EReference)dockerEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBuildImagesExecution()
+  {
+    return buildImagesExecutionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBuildImagesExecution_Sequence()
+  {
+    return (EReference)buildImagesExecutionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1384,7 +1422,11 @@ public class ContainerPackageImpl extends EPackageImpl implements ContainerPacka
     createEReference(dockerEClass, DOCKER__IMPORTS);
     createEReference(dockerEClass, DOCKER__CONTAINER_REGION);
     createEReference(dockerEClass, DOCKER__IMAGE_REGION);
+    createEReference(dockerEClass, DOCKER__BUILD);
     createEReference(dockerEClass, DOCKER__RUNTIME);
+
+    buildImagesExecutionEClass = createEClass(BUILD_IMAGES_EXECUTION);
+    createEReference(buildImagesExecutionEClass, BUILD_IMAGES_EXECUTION__SEQUENCE);
 
     runContainerDefinationEClass = createEClass(RUN_CONTAINER_DEFINATION);
     createEReference(runContainerDefinationEClass, RUN_CONTAINER_DEFINATION__SEQUENCE);
@@ -1546,7 +1588,11 @@ public class ContainerPackageImpl extends EPackageImpl implements ContainerPacka
     initEReference(getDocker_Imports(), this.getImportContainer(), null, "imports", null, 0, -1, Docker.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDocker_ContainerRegion(), this.getContainerSection(), null, "containerRegion", null, 0, 1, Docker.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDocker_ImageRegion(), this.getImageSection(), null, "imageRegion", null, 0, 1, Docker.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDocker_Build(), this.getBuildImagesExecution(), null, "build", null, 0, 1, Docker.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDocker_Runtime(), this.getRunContainerDefination(), null, "runtime", null, 0, 1, Docker.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(buildImagesExecutionEClass, BuildImagesExecution.class, "BuildImagesExecution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBuildImagesExecution_Sequence(), this.getImage(), null, "sequence", null, 0, -1, BuildImagesExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(runContainerDefinationEClass, RunContainerDefination.class, "RunContainerDefination", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRunContainerDefination_Sequence(), this.getContainer(), null, "sequence", null, 0, -1, RunContainerDefination.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.docker.language.container.Docker#getImports <em>Imports</em>}</li>
  *   <li>{@link org.eclipse.docker.language.container.Docker#getContainerRegion <em>Container Region</em>}</li>
  *   <li>{@link org.eclipse.docker.language.container.Docker#getImageRegion <em>Image Region</em>}</li>
+ *   <li>{@link org.eclipse.docker.language.container.Docker#getBuild <em>Build</em>}</li>
  *   <li>{@link org.eclipse.docker.language.container.Docker#getRuntime <em>Runtime</em>}</li>
  * </ul>
  *
@@ -95,6 +96,32 @@ public interface Docker extends EObject
    * @generated
    */
   void setImageRegion(ImageSection value);
+
+  /**
+   * Returns the value of the '<em><b>Build</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Build</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Build</em>' containment reference.
+   * @see #setBuild(BuildImagesExecution)
+   * @see org.eclipse.docker.language.container.ContainerPackage#getDocker_Build()
+   * @model containment="true"
+   * @generated
+   */
+  BuildImagesExecution getBuild();
+
+  /**
+   * Sets the value of the '{@link org.eclipse.docker.language.container.Docker#getBuild <em>Build</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Build</em>' containment reference.
+   * @see #getBuild()
+   * @generated
+   */
+  void setBuild(BuildImagesExecution value);
 
   /**
    * Returns the value of the '<em><b>Runtime</b></em>' containment reference.

@@ -67,6 +67,7 @@ public class ContainerFactoryImpl extends EFactoryImpl implements ContainerFacto
     switch (eClass.getClassifierID())
     {
       case ContainerPackage.DOCKER: return createDocker();
+      case ContainerPackage.BUILD_IMAGES_EXECUTION: return createBuildImagesExecution();
       case ContainerPackage.RUN_CONTAINER_DEFINATION: return createRunContainerDefination();
       case ContainerPackage.IMPORT_CONTAINER: return createImportContainer();
       case ContainerPackage.CONTAINER_SECTION: return createContainerSection();
@@ -141,6 +142,17 @@ public class ContainerFactoryImpl extends EFactoryImpl implements ContainerFacto
   {
     DockerImpl docker = new DockerImpl();
     return docker;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BuildImagesExecution createBuildImagesExecution()
+  {
+    BuildImagesExecutionImpl buildImagesExecution = new BuildImagesExecutionImpl();
+    return buildImagesExecution;
   }
 
   /**

@@ -8,6 +8,7 @@ import java.util.Set;
 import org.eclipse.docker.language.container.Bind;
 import org.eclipse.docker.language.container.Binding;
 import org.eclipse.docker.language.container.BuildArgs;
+import org.eclipse.docker.language.container.BuildImagesExecution;
 import org.eclipse.docker.language.container.Container;
 import org.eclipse.docker.language.container.ContainerPackage;
 import org.eclipse.docker.language.container.ContainerSection;
@@ -58,6 +59,9 @@ public class ContainerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case ContainerPackage.BUILD_ARGS:
 				sequence_BuildArgs(context, (BuildArgs) semanticObject); 
+				return; 
+			case ContainerPackage.BUILD_IMAGES_EXECUTION:
+				sequence_BuildImagesExecution(context, (BuildImagesExecution) semanticObject); 
 				return; 
 			case ContainerPackage.CONTAINER:
 				sequence_Container(context, (Container) semanticObject); 
@@ -168,6 +172,18 @@ public class ContainerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	
 	/**
 	 * Contexts:
+	 *     BuildImagesExecution returns BuildImagesExecution
+	 *
+	 * Constraint:
+	 *     (sequence+=[Image|ID] sequence+=[Image|ID]*)
+	 */
+	protected void sequence_BuildImagesExecution(ISerializationContext context, BuildImagesExecution semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ContainerSection returns ContainerSection
 	 *
 	 * Constraint:
@@ -260,7 +276,12 @@ public class ContainerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Docker returns Docker
 	 *
 	 * Constraint:
-	 *     (imports+=ImportContainer* (containerRegion=ContainerSection | imageRegion=ImageSection)* runtime=RunContainerDefination)
+	 *     (
+	 *         imports+=ImportContainer* 
+	 *         (containerRegion=ContainerSection | imageRegion=ImageSection)* 
+	 *         build=BuildImagesExecution 
+	 *         runtime=RunContainerDefination
+	 *     )
 	 */
 	protected void sequence_Docker(ISerializationContext context, Docker semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -306,7 +327,7 @@ public class ContainerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *
 	 * Constraint:
 	 *     (
-	 *         name=STRING 
+	 *         name=ID 
 	 *         (
 	 *             tag=STRING | 
 	 *             dockerFilelocation=STRING | 

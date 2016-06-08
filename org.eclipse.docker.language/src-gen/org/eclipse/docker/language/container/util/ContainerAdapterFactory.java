@@ -81,6 +81,11 @@ public class ContainerAdapterFactory extends AdapterFactoryImpl
         return createDockerAdapter();
       }
       @Override
+      public Adapter caseBuildImagesExecution(BuildImagesExecution object)
+      {
+        return createBuildImagesExecutionAdapter();
+      }
+      @Override
       public Adapter caseRunContainerDefination(RunContainerDefination object)
       {
         return createRunContainerDefinationAdapter();
@@ -203,6 +208,21 @@ public class ContainerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDockerAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.docker.language.container.BuildImagesExecution <em>Build Images Execution</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.docker.language.container.BuildImagesExecution
+   * @generated
+   */
+  public Adapter createBuildImagesExecutionAdapter()
   {
     return null;
   }

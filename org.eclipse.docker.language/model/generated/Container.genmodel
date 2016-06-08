@@ -58,7 +58,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Container.ecore#//Docker/imports"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Container.ecore#//Docker/containerRegion"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Container.ecore#//Docker/imageRegion"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Container.ecore#//Docker/build"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Container.ecore#//Docker/runtime"/>
+    </genClasses>
+    <genClasses ecoreClass="Container.ecore#//BuildImagesExecution">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Container.ecore#//BuildImagesExecution/sequence"/>
     </genClasses>
     <genClasses ecoreClass="Container.ecore#//RunContainerDefination">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Container.ecore#//RunContainerDefination/sequence"/>

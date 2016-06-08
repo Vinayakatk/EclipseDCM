@@ -9,8 +9,14 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="imageRegion" eType="#//ImageSection"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="build" eType="#//BuildImagesExecution"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="runtime" eType="#//RunContainerDefination"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BuildImagesExecution">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequence" unique="false"
+        upperBound="-1" eType="#//Image"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RunContainerDefination">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sequence" unique="false"

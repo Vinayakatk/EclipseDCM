@@ -32,21 +32,24 @@ import org.eclipse.docker.language.container.Docker
 
 class DockerInterpreterImpl implements DockerInterpreter {
 
-	
-	
 	DockerClient dockerClient
+
 	@Inject
 	public new(Provider<DockerClient> provider) {
 		dockerClient = provider.get
 	}
 
 	override interpret(Resource resource) {
-		 var docker = (resource.contents.get(0) as Docker)
-		docker.runtime.sequence.forEach[it.interpret]
+		var docker = (resource.contents.get(0) as Docker)
+		if (build)
+			docker.build.sequence.forEach[it.interpretImage]
+
+		if (run)
+			docker.runtime.sequence.forEach[it.interpret]
+
 	}
 
 	def dispatch void interpret(Container container) {
-	
 
 		var command = dockerClient.createContainerCmd(container.image)
 		if (container.eGet(ContainerPackage.eINSTANCE.container_Name) != null) {
@@ -164,8 +167,8 @@ class DockerInterpreterImpl implements DockerInterpreter {
 		if (container.eGet(ContainerPackage.eINSTANCE.container_Ulimits) != null) {
 			container.ulimits.interpretULimits(command)
 		}
-		var response=command.exec
-		println(response.id)
+		var response = command.exec
+		dockerClient.startContainerCmd(response.id).exec
 
 	}
 
@@ -236,7 +239,7 @@ class DockerInterpreterImpl implements DockerInterpreter {
 	}
 
 	def toLink(Link link) {
-		new com.github.dockerjava.api.model.Link(link.containerLink,link.alias)
+		new com.github.dockerjava.api.model.Link(link.containerLink, link.alias)
 	}
 
 	def interpretMac(String string, CreateContainerCmd command) {
@@ -305,7 +308,8 @@ class DockerInterpreterImpl implements DockerInterpreter {
 		command.withTty(tty)
 	}
 
-	def void interpretRestartPolicy(org.eclipse.docker.language.container.RestartPolicy policy, CreateContainerCmd command) {
+	def void interpretRestartPolicy(org.eclipse.docker.language.container.RestartPolicy policy,
+		CreateContainerCmd command) {
 		command.withRestartPolicy(policy.toPolicy)
 	}
 
@@ -335,21 +339,21 @@ class DockerInterpreterImpl implements DockerInterpreter {
 	def void interpretVolumesFrom(EList<VolumesFrom> list, CreateContainerCmd command) {
 		command.withVolumesFrom(list.map[toVolumesFrom])
 	}
-	
+
 	def toVolumesFrom(VolumesFrom from) {
-		if(from.accessMode!=null){
-			new com.github.dockerjava.api.model.VolumesFrom(from.container,switch (from.accessMode) {
-				case RO: {
-					com.github.dockerjava.api.model.AccessMode.ro
+		if (from.accessMode != null) {
+			new com.github.dockerjava.api.model.VolumesFrom(
+				from.container,
+				switch (from.accessMode) {
+					case RO: {
+						com.github.dockerjava.api.model.AccessMode.ro
+					}
+					case RW: {
+						com.github.dockerjava.api.model.AccessMode.rw
+					}
 				}
-				case RW: {
-					com.github.dockerjava.api.model.AccessMode.rw
-				}
-			}
-				
 			)
-		}
-		else{
+		} else {
 			new com.github.dockerjava.api.model.VolumesFrom(from.container)
 		}
 	}
@@ -388,15 +392,15 @@ class DockerInterpreterImpl implements DockerInterpreter {
 	def void interpretImage(String image, CreateContainerCmd command) {
 		command.withImage(image)
 	}
-	
+
 	def void interpretImage(Image image) {
 		val buildImageCmd = dockerClient.buildImageCmd
 		val BuildImageResultCallback callback = new BuildImageResultCallback() {
-	    @Override
-	    override void onNext(BuildResponseItem item) {
-	       System.out.println("" + item);
-	       super.onNext(item);
-	    	}
+			@Override
+			override void onNext(BuildResponseItem item) {
+				System.out.println("" + item);
+				super.onNext(item);
+			}
 		};
 
 		if (image.eGet(ContainerPackage.eINSTANCE.image_Tag) != null) {
@@ -412,13 +416,15 @@ class DockerInterpreterImpl implements DockerInterpreter {
 			buildImageCmd.withCpushares(image.cpushares)
 		}
 		if (image.eGet(ContainerPackage.eINSTANCE.image_DockerFilelocation) != null) {
-		var resource = image.eResource
-		var absFile=new File(image.dockerFilelocation)
-			if(absFile.isAbsolute) buildImageCmd.withDockerfile(absFile)
-			else{
-			var file = ResourceUtil.getFile(resource).project.getFile(image.dockerFilelocation).location.toFile
-			buildImageCmd.withDockerfile(file)
-		}}
+			var resource = image.eResource
+			var absFile = new File(image.dockerFilelocation)
+			if (absFile.isAbsolute)
+				buildImageCmd.withDockerfile(absFile)
+			else {
+				var file = ResourceUtil.getFile(resource).project.getFile(image.dockerFilelocation).location.toFile
+				buildImageCmd.withDockerfile(file)
+			}
+		}
 		if (image.eGet(ContainerPackage.eINSTANCE.image_Memory) != null) {
 			buildImageCmd.withMemory(image.memory)
 		}
@@ -429,7 +435,6 @@ class DockerInterpreterImpl implements DockerInterpreter {
 			buildImageCmd.withNoCache(image.noCache)
 		}
 		if (image.eGet(ContainerPackage.eINSTANCE.image_Name) != null) {
-			
 		}
 		if (image.eGet(ContainerPackage.eINSTANCE.image_Pull) != null) {
 			buildImageCmd.withPull(image.pull)
@@ -513,6 +518,18 @@ class DockerInterpreterImpl implements DockerInterpreter {
 
 	def void interpretCpusetCpus(String cpusetCpus, CreateContainerCmd command) {
 		command.withCpuset(cpusetCpus)
+	}
+
+	private Boolean run = false;
+
+	override setRun(Boolean value) {
+		this.run = value
+	}
+
+	private Boolean build = false
+
+	override setBuild(Boolean value) {
+		this.build = value
 	}
 
 }

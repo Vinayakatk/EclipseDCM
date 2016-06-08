@@ -38,15 +38,18 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cContainerRegionContainerSectionParserRuleCall_1_0_0 = (RuleCall)cContainerRegionAssignment_1_0.eContents().get(0);
 		private final Assignment cImageRegionAssignment_1_1 = (Assignment)cUnorderedGroup_1.eContents().get(1);
 		private final RuleCall cImageRegionImageSectionParserRuleCall_1_1_0 = (RuleCall)cImageRegionAssignment_1_1.eContents().get(0);
-		private final Assignment cRuntimeAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cRuntimeRunContainerDefinationParserRuleCall_2_0 = (RuleCall)cRuntimeAssignment_2.eContents().get(0);
+		private final Assignment cBuildAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cBuildBuildImagesExecutionParserRuleCall_2_0 = (RuleCall)cBuildAssignment_2.eContents().get(0);
+		private final Assignment cRuntimeAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cRuntimeRunContainerDefinationParserRuleCall_3_0 = (RuleCall)cRuntimeAssignment_3.eContents().get(0);
 		
 		//Docker:
-		//	imports+=ImportContainer* (containerRegion=ContainerSection? & imageRegion=ImageSection?)
+		//	imports+=ImportContainer* (containerRegion=ContainerSection? & imageRegion=ImageSection?) build=BuildImagesExecution
 		//	runtime=RunContainerDefination;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//imports+=ImportContainer* (containerRegion=ContainerSection? & imageRegion=ImageSection?) runtime=RunContainerDefination
+		//imports+=ImportContainer* (containerRegion=ContainerSection? & imageRegion=ImageSection?) build=BuildImagesExecution
+		//runtime=RunContainerDefination
 		public Group getGroup() { return cGroup; }
 		
 		//imports+=ImportContainer*
@@ -70,11 +73,75 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		//ImageSection
 		public RuleCall getImageRegionImageSectionParserRuleCall_1_1_0() { return cImageRegionImageSectionParserRuleCall_1_1_0; }
 		
+		//build=BuildImagesExecution
+		public Assignment getBuildAssignment_2() { return cBuildAssignment_2; }
+		
+		//BuildImagesExecution
+		public RuleCall getBuildBuildImagesExecutionParserRuleCall_2_0() { return cBuildBuildImagesExecutionParserRuleCall_2_0; }
+		
 		//runtime=RunContainerDefination
-		public Assignment getRuntimeAssignment_2() { return cRuntimeAssignment_2; }
+		public Assignment getRuntimeAssignment_3() { return cRuntimeAssignment_3; }
 		
 		//RunContainerDefination
-		public RuleCall getRuntimeRunContainerDefinationParserRuleCall_2_0() { return cRuntimeRunContainerDefinationParserRuleCall_2_0; }
+		public RuleCall getRuntimeRunContainerDefinationParserRuleCall_3_0() { return cRuntimeRunContainerDefinationParserRuleCall_3_0; }
+	}
+	public class BuildImagesExecutionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.docker.language.Container.BuildImagesExecution");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cBuildExecutionSequenceKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cStartKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cSequenceAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cSequenceImageCrossReference_2_0 = (CrossReference)cSequenceAssignment_2.eContents().get(0);
+		private final RuleCall cSequenceImageIDTerminalRuleCall_2_0_1 = (RuleCall)cSequenceImageCrossReference_2_0.eContents().get(1);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cHyphenMinusGreaterThanSignKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cSequenceAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final CrossReference cSequenceImageCrossReference_3_1_0 = (CrossReference)cSequenceAssignment_3_1.eContents().get(0);
+		private final RuleCall cSequenceImageIDTerminalRuleCall_3_1_0_1 = (RuleCall)cSequenceImageCrossReference_3_1_0.eContents().get(1);
+		private final Keyword cEndKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//BuildImagesExecution:
+		//	'Build Execution Sequence :'
+		//	'Start'
+		//	sequence+=[Image] ('->' sequence+=[Image])*
+		//	'End';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'Build Execution Sequence :' 'Start' sequence+=[Image] ('->' sequence+=[Image])* 'End'
+		public Group getGroup() { return cGroup; }
+		
+		//'Build Execution Sequence :'
+		public Keyword getBuildExecutionSequenceKeyword_0() { return cBuildExecutionSequenceKeyword_0; }
+		
+		//'Start'
+		public Keyword getStartKeyword_1() { return cStartKeyword_1; }
+		
+		//sequence+=[Image]
+		public Assignment getSequenceAssignment_2() { return cSequenceAssignment_2; }
+		
+		//[Image]
+		public CrossReference getSequenceImageCrossReference_2_0() { return cSequenceImageCrossReference_2_0; }
+		
+		//ID
+		public RuleCall getSequenceImageIDTerminalRuleCall_2_0_1() { return cSequenceImageIDTerminalRuleCall_2_0_1; }
+		
+		//('->' sequence+=[Image])*
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//'->'
+		public Keyword getHyphenMinusGreaterThanSignKeyword_3_0() { return cHyphenMinusGreaterThanSignKeyword_3_0; }
+		
+		//sequence+=[Image]
+		public Assignment getSequenceAssignment_3_1() { return cSequenceAssignment_3_1; }
+		
+		//[Image]
+		public CrossReference getSequenceImageCrossReference_3_1_0() { return cSequenceImageCrossReference_3_1_0; }
+		
+		//ID
+		public RuleCall getSequenceImageIDTerminalRuleCall_3_1_0_1() { return cSequenceImageIDTerminalRuleCall_3_1_0_1; }
+		
+		//'End'
+		public Keyword getEndKeyword_4() { return cEndKeyword_4; }
 	}
 	public class RunContainerDefinationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.docker.language.Container.RunContainerDefination");
@@ -94,7 +161,8 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		//RunContainerDefination:
 		//	'Container Execution Sequence :'
 		//	'Start'
-		//	sequence+=[Container] ('->' sequence+=[Container])* 'End';
+		//	sequence+=[Container] ('->' sequence+=[Container])*
+		//	'End';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'Container Execution Sequence :' 'Start' sequence+=[Container] ('->' sequence+=[Container])* 'End'
@@ -323,7 +391,7 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cImageKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameSTRINGTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final UnorderedGroup cUnorderedGroup_3 = (UnorderedGroup)cGroup.eContents().get(3);
 		private final Group cGroup_3_0 = (Group)cUnorderedGroup_3.eContents().get(0);
@@ -373,14 +441,14 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Image: //build a new image or pull exiting image added later
-		//	'image' name=STRING '{' (('tag' tag=STRING)? & ('dockerFileLocation' dockerFilelocation=STRING)? & ('Force-rm'
+		//	'image' name=ID '{' (('tag' tag=STRING)? & ('dockerFileLocation' dockerFilelocation=STRING)? & ('Force-rm'
 		//	forceRM=EBoolean)? & ('noCache' noCache=EBoolean)? & ('memory' memory=Elong)? & ('memswap' memswap=Elong)? &
 		//	('cpusetcpus' cpusetcpus=STRING)? & ('cpushares' cpushares=STRING)? & ('remove' remove=EBoolean)? & ('quiet'
 		//	quiet=EBoolean)? & ('pull' pull=EBoolean)?) '}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		////build a new image or pull exiting image added later
-		//'image' name=STRING '{' (('tag' tag=STRING)? & ('dockerFileLocation' dockerFilelocation=STRING)? & ('Force-rm'
+		//'image' name=ID '{' (('tag' tag=STRING)? & ('dockerFileLocation' dockerFilelocation=STRING)? & ('Force-rm'
 		//forceRM=EBoolean)? & ('noCache' noCache=EBoolean)? & ('memory' memory=Elong)? & ('memswap' memswap=Elong)? &
 		//('cpusetcpus' cpusetcpus=STRING)? & ('cpushares' cpushares=STRING)? & ('remove' remove=EBoolean)? & ('quiet'
 		//quiet=EBoolean)? & ('pull' pull=EBoolean)?) '}'
@@ -390,11 +458,11 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		//'image'
 		public Keyword getImageKeyword_0() { return cImageKeyword_0; }
 		
-		//name=STRING
+		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
-		//STRING
-		public RuleCall getNameSTRINGTerminalRuleCall_1_0() { return cNameSTRINGTerminalRuleCall_1_0; }
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
@@ -800,21 +868,20 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		////	'volume'  name=ID '{'  '}'
 		////;
 		//Container:
-		//	'container' name=ID '{'
-		//	'image-tag' image=STRING (('binds' '{' binds+=Bind+ '}')? & ('capabilityAdd' '{' capabilityAdd+=Capability+ '}')? &
-		//	('capabilityDrop' '{' capabilityDrop+=Capability+ '}')? & ('commands' '{' commands+=STRING+ '}')? &
-		//	('containerIDFile' containerIDFile=STRING)? & ('cpuPeriod' cpuPeriod=INT)? & ('cpusetCpus' cpusetCpus=STRING)? &
-		//	('cpusetMems' cpusetMems=STRING)? & ('cpuShares' cpuShares=INT)? & ('devices' '{' devices+=Device+ '}')? & ('dns'
-		//	dns+=STRING+ '}')? & ('dnsSearch' '{' dnsSearch+=STRING+ '}')? & ('domainName' domainName=STRING)? & ('entrypoint'
-		//	'{' entrypoint+=STRING+ '}')? & ('env' '{' env+=STRING+ '}')? & ('exposedPorts' '{' exposedPorts+=ExposedPort+ '}')?
-		//	& ('extraHosts' '{' extraHosts+=STRING+ '}')? & ('labels' '{' labels+=Label+ '}')? & ('links' '{' links+=Link+ '}')?
-		//	& ('macAddress' macAddress=STRING)? & ('memory' memory=Elong)? & ('memorySwap' memorySwap=Elong)? & ('disableNetwork'
-		//	disableNetwork=EBoolean)? & ('networkMode' networkMode=STRING)? & ('portBindings' '{' portBindings+=PortBinding+
-		//	'}')? & ('privileged' privileged=EBoolean)? & ('publishAllPorts' publishAllPorts=EBoolean)? & ('readonlyRootfs'
-		//	readonlyRootfs=EBoolean)? & ('pidMode' pidMode=STRING)? & ('workingDir' workingDir=STRING)? & ('user' user=STRING)? &
-		//	('tty' tty=EBoolean)? & ('restartPolicy' restartPolicy=RestartPolicy)? & ('volumes' '{' ('-' volumes+=Volume)+ '}')?
-		//	& ('volumesFrom' '{' volumesFrom+=VolumesFrom+ '}')? & ('ulimits' '{' ulimits+=Ulimit+ '}')?)
-		//	'}';
+		//	'container' name=ID '{' 'image-tag' image=STRING (('binds' '{' binds+=Bind+ '}')? & ('capabilityAdd' '{'
+		//	capabilityAdd+=Capability+ '}')? & ('capabilityDrop' '{' capabilityDrop+=Capability+ '}')? & ('commands' '{'
+		//	commands+=STRING+ '}')? & ('containerIDFile' containerIDFile=STRING)? & ('cpuPeriod' cpuPeriod=INT)? & ('cpusetCpus'
+		//	cpusetCpus=STRING)? & ('cpusetMems' cpusetMems=STRING)? & ('cpuShares' cpuShares=INT)? & ('devices' '{'
+		//	devices+=Device+ '}')? & ('dns' dns+=STRING+ '}')? & ('dnsSearch' '{' dnsSearch+=STRING+ '}')? & ('domainName'
+		//	domainName=STRING)? & ('entrypoint' '{' entrypoint+=STRING+ '}')? & ('env' '{' env+=STRING+ '}')? & ('exposedPorts'
+		//	'{' exposedPorts+=ExposedPort+ '}')? & ('extraHosts' '{' extraHosts+=STRING+ '}')? & ('labels' '{' labels+=Label+
+		//	'}')? & ('links' '{' links+=Link+ '}')? & ('macAddress' macAddress=STRING)? & ('memory' memory=Elong)? &
+		//	('memorySwap' memorySwap=Elong)? & ('disableNetwork' disableNetwork=EBoolean)? & ('networkMode' networkMode=STRING)?
+		//	& ('portBindings' '{' portBindings+=PortBinding+ '}')? & ('privileged' privileged=EBoolean)? & ('publishAllPorts'
+		//	publishAllPorts=EBoolean)? & ('readonlyRootfs' readonlyRootfs=EBoolean)? & ('pidMode' pidMode=STRING)? &
+		//	('workingDir' workingDir=STRING)? & ('user' user=STRING)? & ('tty' tty=EBoolean)? & ('restartPolicy'
+		//	restartPolicy=RestartPolicy)? & ('volumes' '{' ('-' volumes+=Volume)+ '}')? & ('volumesFrom' '{'
+		//	volumesFrom+=VolumesFrom+ '}')? & ('ulimits' '{' ulimits+=Ulimit+ '}')?) '}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'container' name=ID '{' 'image-tag' image=STRING (('binds' '{' binds+=Bind+ '}')? & ('capabilityAdd' '{'
@@ -1426,9 +1493,7 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		////	 'Active'
 		////;
 		//VolumesFrom:
-		//	'-'
-		//	container=STRING ':'
-		//	accessMode=AccessMode?;
+		//	'-' container=STRING ':' accessMode=AccessMode?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'-' container=STRING ':' accessMode=AccessMode?
@@ -1518,9 +1583,7 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExposedPortExposedPortSTRINGTerminalRuleCall_2_0_1 = (RuleCall)cExposedPortExposedPortCrossReference_2_0.eContents().get(1);
 		
 		//PortBinding:
-		//	'-'
-		//	binding=Binding
-		//	exposedPort=[ExposedPort|STRING];
+		//	'-' binding=Binding exposedPort=[ExposedPort|STRING];
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'-' binding=Binding exposedPort=[ExposedPort|STRING]
@@ -1555,8 +1618,7 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cHostPortINTTerminalRuleCall_3_0 = (RuleCall)cHostPortAssignment_3.eContents().get(0);
 		
 		//Binding:
-		//	'-'
-		//	hostIP=STRING ':' hostPort=INT;
+		//	'-' hostIP=STRING ':' hostPort=INT;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'-' hostIP=STRING ':' hostPort=INT
@@ -1592,8 +1654,7 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAliasSTRINGTerminalRuleCall_2_1_0 = (RuleCall)cAliasAssignment_2_1.eContents().get(0);
 		
 		//Link:
-		//	'-'
-		//	containerLink=STRING (':' alias=STRING)?;
+		//	'-' containerLink=STRING (':' alias=STRING)?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'-' containerLink=STRING (':' alias=STRING)?
@@ -1632,10 +1693,7 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cHardINTTerminalRuleCall_3_0 = (RuleCall)cHardAssignment_3.eContents().get(0);
 		
 		//Ulimit:
-		//	'-'
-		//	name=STRING
-		//	soft=INT
-		//	hard=INT;
+		//	'-' name=STRING soft=INT hard=INT;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'-' name=STRING soft=INT hard=INT
@@ -1700,8 +1758,7 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cProtocolInternalProtocolEnumRuleCall_3_0 = (RuleCall)cProtocolAssignment_3.eContents().get(0);
 		
 		//ExposedPort:
-		//	'-'
-		//	port=STRING '/' protocol=InternalProtocol;
+		//	'-' port=STRING '/' protocol=InternalProtocol;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'-' port=STRING '/' protocol=InternalProtocol
@@ -1737,10 +1794,7 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPathInContainerSTRINGTerminalRuleCall_3_0 = (RuleCall)cPathInContainerAssignment_3.eContents().get(0);
 		
 		//Device:
-		//	'-'
-		//	cGroupPermissions=STRING
-		//	pathOnHost=STRING
-		//	pathInContainer=STRING;
+		//	'-' cGroupPermissions=STRING pathOnHost=STRING pathInContainer=STRING;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'-' cGroupPermissions=STRING pathOnHost=STRING pathInContainer=STRING
@@ -2813,6 +2867,7 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	private final DockerElements pDocker;
+	private final BuildImagesExecutionElements pBuildImagesExecution;
 	private final RunContainerDefinationElements pRunContainerDefination;
 	private final ImportContainerElements pImportContainer;
 	private final ImportedFQNElements pImportedFQN;
@@ -2849,6 +2904,7 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pDocker = new DockerElements();
+		this.pBuildImagesExecution = new BuildImagesExecutionElements();
 		this.pRunContainerDefination = new RunContainerDefinationElements();
 		this.pImportContainer = new ImportContainerElements();
 		this.pImportedFQN = new ImportedFQNElements();
@@ -2904,7 +2960,7 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Docker:
-	//	imports+=ImportContainer* (containerRegion=ContainerSection? & imageRegion=ImageSection?)
+	//	imports+=ImportContainer* (containerRegion=ContainerSection? & imageRegion=ImageSection?) build=BuildImagesExecution
 	//	runtime=RunContainerDefination;
 	public DockerElements getDockerAccess() {
 		return pDocker;
@@ -2914,10 +2970,24 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		return getDockerAccess().getRule();
 	}
 	
+	//BuildImagesExecution:
+	//	'Build Execution Sequence :'
+	//	'Start'
+	//	sequence+=[Image] ('->' sequence+=[Image])*
+	//	'End';
+	public BuildImagesExecutionElements getBuildImagesExecutionAccess() {
+		return pBuildImagesExecution;
+	}
+	
+	public ParserRule getBuildImagesExecutionRule() {
+		return getBuildImagesExecutionAccess().getRule();
+	}
+	
 	//RunContainerDefination:
 	//	'Container Execution Sequence :'
 	//	'Start'
-	//	sequence+=[Container] ('->' sequence+=[Container])* 'End';
+	//	sequence+=[Container] ('->' sequence+=[Container])*
+	//	'End';
 	public RunContainerDefinationElements getRunContainerDefinationAccess() {
 		return pRunContainerDefination;
 	}
@@ -2983,7 +3053,7 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Image: //build a new image or pull exiting image added later
-	//	'image' name=STRING '{' (('tag' tag=STRING)? & ('dockerFileLocation' dockerFilelocation=STRING)? & ('Force-rm'
+	//	'image' name=ID '{' (('tag' tag=STRING)? & ('dockerFileLocation' dockerFilelocation=STRING)? & ('Force-rm'
 	//	forceRM=EBoolean)? & ('noCache' noCache=EBoolean)? & ('memory' memory=Elong)? & ('memswap' memswap=Elong)? &
 	//	('cpusetcpus' cpusetcpus=STRING)? & ('cpushares' cpushares=STRING)? & ('remove' remove=EBoolean)? & ('quiet'
 	//	quiet=EBoolean)? & ('pull' pull=EBoolean)?) '}';
@@ -3033,21 +3103,20 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 	////	'volume'  name=ID '{'  '}'
 	////;
 	//Container:
-	//	'container' name=ID '{'
-	//	'image-tag' image=STRING (('binds' '{' binds+=Bind+ '}')? & ('capabilityAdd' '{' capabilityAdd+=Capability+ '}')? &
-	//	('capabilityDrop' '{' capabilityDrop+=Capability+ '}')? & ('commands' '{' commands+=STRING+ '}')? &
-	//	('containerIDFile' containerIDFile=STRING)? & ('cpuPeriod' cpuPeriod=INT)? & ('cpusetCpus' cpusetCpus=STRING)? &
-	//	('cpusetMems' cpusetMems=STRING)? & ('cpuShares' cpuShares=INT)? & ('devices' '{' devices+=Device+ '}')? & ('dns'
-	//	dns+=STRING+ '}')? & ('dnsSearch' '{' dnsSearch+=STRING+ '}')? & ('domainName' domainName=STRING)? & ('entrypoint'
-	//	'{' entrypoint+=STRING+ '}')? & ('env' '{' env+=STRING+ '}')? & ('exposedPorts' '{' exposedPorts+=ExposedPort+ '}')?
-	//	& ('extraHosts' '{' extraHosts+=STRING+ '}')? & ('labels' '{' labels+=Label+ '}')? & ('links' '{' links+=Link+ '}')?
-	//	& ('macAddress' macAddress=STRING)? & ('memory' memory=Elong)? & ('memorySwap' memorySwap=Elong)? & ('disableNetwork'
-	//	disableNetwork=EBoolean)? & ('networkMode' networkMode=STRING)? & ('portBindings' '{' portBindings+=PortBinding+
-	//	'}')? & ('privileged' privileged=EBoolean)? & ('publishAllPorts' publishAllPorts=EBoolean)? & ('readonlyRootfs'
-	//	readonlyRootfs=EBoolean)? & ('pidMode' pidMode=STRING)? & ('workingDir' workingDir=STRING)? & ('user' user=STRING)? &
-	//	('tty' tty=EBoolean)? & ('restartPolicy' restartPolicy=RestartPolicy)? & ('volumes' '{' ('-' volumes+=Volume)+ '}')?
-	//	& ('volumesFrom' '{' volumesFrom+=VolumesFrom+ '}')? & ('ulimits' '{' ulimits+=Ulimit+ '}')?)
-	//	'}';
+	//	'container' name=ID '{' 'image-tag' image=STRING (('binds' '{' binds+=Bind+ '}')? & ('capabilityAdd' '{'
+	//	capabilityAdd+=Capability+ '}')? & ('capabilityDrop' '{' capabilityDrop+=Capability+ '}')? & ('commands' '{'
+	//	commands+=STRING+ '}')? & ('containerIDFile' containerIDFile=STRING)? & ('cpuPeriod' cpuPeriod=INT)? & ('cpusetCpus'
+	//	cpusetCpus=STRING)? & ('cpusetMems' cpusetMems=STRING)? & ('cpuShares' cpuShares=INT)? & ('devices' '{'
+	//	devices+=Device+ '}')? & ('dns' dns+=STRING+ '}')? & ('dnsSearch' '{' dnsSearch+=STRING+ '}')? & ('domainName'
+	//	domainName=STRING)? & ('entrypoint' '{' entrypoint+=STRING+ '}')? & ('env' '{' env+=STRING+ '}')? & ('exposedPorts'
+	//	'{' exposedPorts+=ExposedPort+ '}')? & ('extraHosts' '{' extraHosts+=STRING+ '}')? & ('labels' '{' labels+=Label+
+	//	'}')? & ('links' '{' links+=Link+ '}')? & ('macAddress' macAddress=STRING)? & ('memory' memory=Elong)? &
+	//	('memorySwap' memorySwap=Elong)? & ('disableNetwork' disableNetwork=EBoolean)? & ('networkMode' networkMode=STRING)?
+	//	& ('portBindings' '{' portBindings+=PortBinding+ '}')? & ('privileged' privileged=EBoolean)? & ('publishAllPorts'
+	//	publishAllPorts=EBoolean)? & ('readonlyRootfs' readonlyRootfs=EBoolean)? & ('pidMode' pidMode=STRING)? &
+	//	('workingDir' workingDir=STRING)? & ('user' user=STRING)? & ('tty' tty=EBoolean)? & ('restartPolicy'
+	//	restartPolicy=RestartPolicy)? & ('volumes' '{' ('-' volumes+=Volume)+ '}')? & ('volumesFrom' '{'
+	//	volumesFrom+=VolumesFrom+ '}')? & ('ulimits' '{' ulimits+=Ulimit+ '}')?) '}';
 	public ContainerElements getContainerAccess() {
 		return pContainer;
 	}
@@ -3063,9 +3132,7 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 	////	 'Active'
 	////;
 	//VolumesFrom:
-	//	'-'
-	//	container=STRING ':'
-	//	accessMode=AccessMode?;
+	//	'-' container=STRING ':' accessMode=AccessMode?;
 	public VolumesFromElements getVolumesFromAccess() {
 		return pVolumesFrom;
 	}
@@ -3085,9 +3152,7 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//PortBinding:
-	//	'-'
-	//	binding=Binding
-	//	exposedPort=[ExposedPort|STRING];
+	//	'-' binding=Binding exposedPort=[ExposedPort|STRING];
 	public PortBindingElements getPortBindingAccess() {
 		return pPortBinding;
 	}
@@ -3097,8 +3162,7 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Binding:
-	//	'-'
-	//	hostIP=STRING ':' hostPort=INT;
+	//	'-' hostIP=STRING ':' hostPort=INT;
 	public BindingElements getBindingAccess() {
 		return pBinding;
 	}
@@ -3108,8 +3172,7 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Link:
-	//	'-'
-	//	containerLink=STRING (':' alias=STRING)?;
+	//	'-' containerLink=STRING (':' alias=STRING)?;
 	public LinkElements getLinkAccess() {
 		return pLink;
 	}
@@ -3119,10 +3182,7 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Ulimit:
-	//	'-'
-	//	name=STRING
-	//	soft=INT
-	//	hard=INT;
+	//	'-' name=STRING soft=INT hard=INT;
 	public UlimitElements getUlimitAccess() {
 		return pUlimit;
 	}
@@ -3142,8 +3202,7 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ExposedPort:
-	//	'-'
-	//	port=STRING '/' protocol=InternalProtocol;
+	//	'-' port=STRING '/' protocol=InternalProtocol;
 	public ExposedPortElements getExposedPortAccess() {
 		return pExposedPort;
 	}
@@ -3163,10 +3222,7 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Device:
-	//	'-'
-	//	cGroupPermissions=STRING
-	//	pathOnHost=STRING
-	//	pathInContainer=STRING;
+	//	'-' cGroupPermissions=STRING pathOnHost=STRING pathInContainer=STRING;
 	public DeviceElements getDeviceAccess() {
 		return pDevice;
 	}
