@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.eclipse.docker.language.ui.events.StringStateMatch.State;
-import org.eclipse.docker.language.ui.internal.ContainerActivator;
+import org.eclipse.docker.language.ui.internal.LanguageActivator;
 import org.eclipse.swt.widgets.Display;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.event.EventAdmin;
@@ -43,8 +43,8 @@ public class EventsMonitoring {
 			public void run() {
 				// TODO Auto-generated constructor stub
 				// TODO Auto-generated method stub
-				Injector injector = ContainerActivator.getInstance()
-						.getInjector(ContainerActivator.ORG_ECLIPSE_DOCKER_LANGUAGE_CONTAINER);
+				Injector injector = LanguageActivator.getInstance()
+						.getInjector(LanguageActivator.ORG_ECLIPSE_DOCKER_LANGUAGE_CONTAINER);
 				Provider<DockerClient> provider = injector.getProvider(DockerClient.class);
 				
 			
@@ -65,9 +65,9 @@ public class EventsMonitoring {
 							
 							if(state!=null){
 								System.out.println("posting");
-								ServiceReference<EventAdmin> serviceReference = ContainerActivator.getInstance().getBundle().getBundleContext().getServiceReference(EventAdmin.class);
+								ServiceReference<EventAdmin> serviceReference = LanguageActivator.getInstance().getBundle().getBundleContext().getServiceReference(EventAdmin.class);
 								if (serviceReference!=null) {
-									EventAdmin service = ContainerActivator.getInstance().getBundle().getBundleContext().getService(serviceReference);
+									EventAdmin service = LanguageActivator.getInstance().getBundle().getBundleContext().getService(serviceReference);
 									HashMap<String, Object> newHashMap = Maps.newHashMap();
 									service.postEvent(new org.osgi.service.event.Event("state", newHashMap));
 								}

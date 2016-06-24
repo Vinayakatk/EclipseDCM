@@ -33,7 +33,7 @@ import org.eclipse.swt.SWT
 import org.eclipse.swt.widgets.Display
 import org.eclipse.swt.widgets.Label
 import org.eclipse.docker.language.transformation.ContainerTransformation
-import org.eclipse.docker.language.ui.internal.ContainerActivator
+import org.eclipse.docker.language.ui.internal.LanguageActivator
 import java.util.List
 
 class DockerDiagramSynthesis extends AbstractDiagramSynthesis<Docker> {
@@ -57,7 +57,7 @@ class DockerDiagramSynthesis extends AbstractDiagramSynthesis<Docker> {
 	override KNode transform(Docker model) {
 		docker = model
 		cloned = EcoreUtil2.cloneWithProxies(model)
-		var injector = ContainerActivator.instance.getInjector(ContainerActivator.ORG_ECLIPSE_DOCKER_LANGUAGE_CONTAINER)
+		var injector = LanguageActivator.instance.getInjector(LanguageActivator.ORG_ECLIPSE_DOCKER_LANGUAGE_CONTAINER)
 		transformation = injector.getInstance(ContainerTransformation)
 		provider = injector.getProvider(DockerClient)
 		val root = model.createNode().associateWith(model);

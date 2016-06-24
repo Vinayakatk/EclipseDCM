@@ -7,7 +7,7 @@ import javax.swing.event.HyperlinkListener;
 
 import org.eclipse.docker.language.DockerConfig;
 import org.eclipse.docker.language.ui.ConfigurationDialog;
-import org.eclipse.docker.language.ui.internal.ContainerActivator;
+import org.eclipse.docker.language.ui.internal.LanguageActivator;
 import org.eclipse.docker.language.util.ContainerUtil;
 import org.eclipse.docker.monitoring.ContainerStatsCallback;
 import org.eclipse.swt.SWT;
@@ -225,8 +225,8 @@ public class MonitorView extends ViewPart {
 	@Override
 	public void init(IViewSite site, IMemento memento) throws PartInitException {
 		String secondaryId = site.getSecondaryId();
-		Injector injector = ContainerActivator.getInstance()
-				.getInjector(ContainerActivator.ORG_ECLIPSE_DOCKER_LANGUAGE_CONTAINER);
+		Injector injector = LanguageActivator.getInstance()
+				.getInjector(LanguageActivator.ORG_ECLIPSE_DOCKER_LANGUAGE_CONTAINER);
 		bus = injector.getInstance(EventBus.class);
 		bus.register(this);
 		Provider<DockerClient> provider = injector.getProvider(DockerClient.class);

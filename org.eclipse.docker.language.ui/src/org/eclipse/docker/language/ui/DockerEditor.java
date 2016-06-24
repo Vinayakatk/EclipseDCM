@@ -10,7 +10,7 @@ import org.eclipse.docker.language.TableModel.TModelSingleton;
 import org.eclipse.docker.language.container.ContainerFactory;
 import org.eclipse.docker.language.transformation.ContainerTransformation;
 import org.eclipse.docker.language.ui.events.DEvent;
-import org.eclipse.docker.language.ui.internal.ContainerActivator;
+import org.eclipse.docker.language.ui.internal.LanguageActivator;
 import org.eclipse.docker.language.ui.swt.ResourceManager;
 import org.eclipse.docker.language.ui.swt.SWTResourceManager;
 import org.eclipse.emf.common.util.URI;
@@ -73,8 +73,6 @@ import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
-import de.cau.cs.kieler.klighd.ui.DiagramViewManager;
-
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
@@ -82,39 +80,35 @@ import org.eclipse.swt.widgets.Text;
 
 public class DockerEditor extends XtextEditor {
 	public DockerEditor() {
-		
+
 	}
+
 	@Inject
 	org.eclipse.docker.language.ui.events.EventsMonitoring monitoring;
-	
+
 	@Inject
 	Provider<DockerClient> provider;
 	private final FormToolkit formToolkit = new FormToolkit(Display.getDefault());
 	private Table table;
 	@Inject
 	private DockerConfig config;
-	
-	
+
 	@Inject
 	Provider<ResourceSet> resources;
 
-	
 	@Inject
 	private ContainerTransformation transformation;
-	
+
 	private TableViewer tableViewer;
-	
-	
+
 	private volatile String selectedContainer;
 	private Text text;
 
 	private Button connect;
-	
-
 
 	@Override
 	public void createPartControl(Composite parent) {
-		
+
 		Composite container = new Composite(parent, SWT.NONE);
 		container.setLayout(new FillLayout(SWT.HORIZONTAL));
 
@@ -158,27 +152,26 @@ public class DockerEditor extends XtextEditor {
 		connect.setImage(ResourceManager.getPluginImage("org.eclipse.docker.language.ui", "icons/docker.jpg"));
 		sctnNewSection.setTextClient(connect);
 		connect.addSelectionListener(new SelectionAdapter() {
-		@Override
-		public void widgetSelected(SelectionEvent e) {
-			 
-			try {
-				provider.get().pingCmd().exec();
-			} catch (Exception e1) {
-				System.out.println("cannot connect");
-				
-				MessageDialog.openError(Display.getCurrent().getActiveShell(), " Cannot connect to host Error",
-						"please enter a valid Host address which has a running Docker instance");
-				return;
-			}
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+
+				try {
+					provider.get().pingCmd().exec();
+				} catch (Exception e1) {
+					System.out.println("cannot connect");
+
+					MessageDialog.openError(Display.getCurrent().getActiveShell(), " Cannot connect to host Error",
+							"please enter a valid Host address which has a running Docker instance");
+					return;
+				}
 				TModelSingleton model = transformation.transform();
 				tableViewer.setInput(model.getEntries());
 				tableViewer.refresh();
-				
+
 				monitoring.monitor();
-				
-			
-			super.widgetSelected(e);
-		}
+
+				super.widgetSelected(e);
+			}
 		});
 
 		Composite composite = formToolkit.createComposite(sctnNewSection, SWT.NONE);
@@ -234,88 +227,88 @@ public class DockerEditor extends XtextEditor {
 		table.setHeaderVisible(true);
 		formToolkit.paintBordersFor(table);
 		Menu contextMenu = new Menu(table);
-	    table.setMenu(contextMenu);
-	    MenuItem mItem1 = new MenuItem(contextMenu, SWT.None);
-	    mItem1.setText("Open Container monitoring");
-	    mItem1.addSelectionListener(new SelectionAdapter() {
-		@Override
-		public void widgetSelected(SelectionEvent e) {
-			try {
-				
-				if(config.getUri()==null){
-					ConfigurationDialog d = new ConfigurationDialog(Display.getCurrent().getActiveShell(), config);
-					d.create();
-					d.open();
+		table.setMenu(contextMenu);
+		MenuItem mItem1 = new MenuItem(contextMenu, SWT.None);
+		mItem1.setText("Open Container monitoring");
+		mItem1.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				try {
+
+					if (config.getUri() == null) {
+						ConfigurationDialog d = new ConfigurationDialog(Display.getCurrent().getActiveShell(), config);
+						d.create();
+						d.open();
+					}
+					IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+					activePage.hideView(
+							activePage.findViewReference("org.eclipse.docker.monitoring.view", selectedContainer));
+					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+							.showView("org.eclipse.docker.monitoring.view", selectedContainer, 1);
+				} catch (PartInitException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
-				IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-				activePage.hideView(activePage.findViewReference("org.eclipse.docker.monitoring.view", selectedContainer));
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView("org.eclipse.docker.monitoring.view", selectedContainer, 1);
-			} catch (PartInitException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				super.widgetSelected(e);
 			}
-			super.widgetSelected(e);
-		}
-	    });
-	    table.addListener(SWT.MouseDown, new Listener(){
+		});
+		table.addListener(SWT.MouseDown, new Listener() {
 
-	        @Override
-	        public void handleEvent(Event event) {
-	            TableItem[] selection = table.getSelection();
-	            if(selection.length!=0 && (event.button == 3)){
-	                contextMenu.setVisible(true);
-	                selectedContainer = selection[0].getText();
-	                
-	            }
+			@Override
+			public void handleEvent(Event event) {
+				TableItem[] selection = table.getSelection();
+				if (selection.length != 0 && (event.button == 3)) {
+					contextMenu.setVisible(true);
+					selectedContainer = selection[0].getText();
 
-	        }
+				}
 
-	    });
-		
+			}
+
+		});
+
 		tableViewer.setContentProvider(new ArrayContentProvider());
-		
+
 		TableViewerColumn containerColumn = new TableViewerColumn(tableViewer, SWT.NONE);
 		TableColumn tblclmnCol = containerColumn.getColumn();
 		tblclmnCol.setImage(ResourceManager.getPluginImage("org.eclipse.docker.language.ui", "icons/docker.jpg"));
 		tblclmnCol.setMoveable(true);
 		tblclmnCol.setWidth(350);
 		tblclmnCol.setText("containers");
-		containerColumn.setLabelProvider(new ColumnLabelProvider(){
+		containerColumn.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
-				if (element instanceof CData	) {
+				if (element instanceof CData) {
 					CData data = (CData) element;
 					return data.getName();
-				}else if (element instanceof String) {
-				
+				} else if (element instanceof String) {
+
 					Iterable<String> split = Splitter.on("@").split(element.toString());
 					return Lists.newArrayList(split).get(0).toString();
 				}
 				return "";
 			}
 		});
-		
 
 		TableViewerColumn statusColumn = new TableViewerColumn(tableViewer, SWT.CENTER);
 		TableColumn tblclmnCol_1 = statusColumn.getColumn();
 		tblclmnCol_1.setWidth(150);
 		tblclmnCol_1.setText("status");
-		statusColumn.setLabelProvider(new ColumnLabelProvider(){
+		statusColumn.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
 				if (element instanceof CData) {
 					CData data = (CData) element;
 					return data.getStatus();
-				}
-				else if (element instanceof String) {
-				
+				} else if (element instanceof String) {
+
 					Iterable<String> split = Splitter.on("@").split(element.toString());
 					return Lists.newArrayList(split).get(1).toString();
 				}
 				return "";
 			}
 		});
-		
+
 		text = new Text(composite_1, SWT.BORDER);
 		fd_table.top = new FormAttachment(text, 6);
 		FormData fd_text = new FormData();
@@ -324,78 +317,75 @@ public class DockerEditor extends XtextEditor {
 		fd_text.left = new FormAttachment(0);
 		text.setLayoutData(fd_text);
 		formToolkit.adapt(text, true, true);
-		
+
 		ContainerFilter filter = new ContainerFilter();
-		tableViewer.setFilters(new ViewerFilter[]{filter});
+		tableViewer.setFilters(new ViewerFilter[] { filter });
 		text.addKeyListener(new KeyListener() {
-			
-	
-			
+
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if(e.character==SWT.CR){
+				if (e.character == SWT.CR) {
 					filter.setSearchName(text.getText());
 					tableViewer.refresh();
 				}
-				
+
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
-		
+
 		Button clear = new Button(sctnNewSection_1, SWT.NONE);
 		clear.setImage(ResourceManager.getPluginImage("org.eclipse.ui", "/icons/full/dlcl16/removeall.png"));
 		formToolkit.adapt(clear, true, true);
 		sctnNewSection_1.setTextClient(clear);
 		clear.setText("clear");
 		clear.addSelectionListener(new SelectionAdapter() {
-		@Override
-		public void widgetSelected(SelectionEvent e) {
-			TModelSingleton.getModel().getEntries().clear();
-			tableViewer.setInput(null);
-			tableViewer.refresh();
-//			monitoring.stopMonitoring();
-			super.widgetSelected(e);
-		}
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				TModelSingleton.getModel().getEntries().clear();
+				tableViewer.setInput(null);
+				tableViewer.refresh();
+				// monitoring.stopMonitoring();
+				super.widgetSelected(e);
+			}
 		});
 		tableViewer.setInput(TModelSingleton.getModel().getEntries());
 		tableViewer.refresh();
 		EventHandler handler = new EventHandler() {
-			
+
 			@Override
 			public void handleEvent(org.osgi.service.event.Event event) {
 				System.out.println("received");
 				new Thread(new Runnable() {
-					
+
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
 						Display.getDefault().syncExec(new Runnable() {
-							
+
 							@Override
 							public void run() {
 								// TODO Auto-generated method stub
 								TModelSingleton model = transformation.transform();
 								tableViewer.setInput(model.getEntries());
-								tableViewer.refresh();	
-								
+								tableViewer.refresh();
+
 							}
 						});
 					}
-				}).start();;
-				
-				
-				
+				}).start();
+				;
+
 			}
 		};
 		Dictionary<String, String> d = new Hashtable<>();
 		d.put(EventConstants.EVENT_TOPIC, "state");
-		ContainerActivator.getInstance().getBundle().getBundleContext().registerService(EventHandler.class, handler, d);
-		
+		LanguageActivator.getInstance().getBundle().getBundleContext().registerService(EventHandler.class, handler, d);
+
 		super.createPartControl(composite_2);
 
 	}
@@ -405,32 +395,33 @@ public class DockerEditor extends XtextEditor {
 		DockerPreferenceManager.loadData(this);
 		super.init(site, input);
 	}
-	
-	class ContainerFilter extends ViewerFilter{
+
+	class ContainerFilter extends ViewerFilter {
 		private String searchName;
-		
+
 		public String getSearchName() {
 			return searchName;
 		}
+
 		public void setSearchName(String searchName) {
 			this.searchName = searchName;
 		}
+
 		@Override
 		public boolean select(Viewer viewer, Object parentElement, Object element) {
-			if (element instanceof CData && searchName!=null && !searchName.isEmpty()) {
+			if (element instanceof CData && searchName != null && !searchName.isEmpty()) {
 				CData data = (CData) element;
-				
-				if(data.getName().contains(searchName)){
+
+				if (data.getName().contains(searchName)) {
 					return true;
-				}
-				else{
+				} else {
 					return false;
 				}
 			}
 			return true;
-		
+
 		}
-		
+
 	}
-	
+
 }

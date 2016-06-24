@@ -13,7 +13,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javafx.application.Platform;
-import org.eclipse.docker.language.ui.internal.ContainerActivator;
+import org.eclipse.docker.language.ui.internal.LanguageActivator;
 import org.eclipse.docker.monitoring.CPUMonitoring;
 import org.eclipse.docker.monitoring.IOMonitoring;
 import org.eclipse.docker.monitoring.MemoryMonitoring;
@@ -39,8 +39,8 @@ public class ContainerStatsCallback extends ResultCallbackTemplate<ContainerStat
   
   public ContainerStatsCallback(final String name) {
     this.name = name;
-    ContainerActivator _instance = ContainerActivator.getInstance();
-    Injector injector = _instance.getInjector(ContainerActivator.ORG_ECLIPSE_DOCKER_LANGUAGE_CONTAINER);
+    LanguageActivator _instance = LanguageActivator.getInstance();
+    Injector injector = _instance.getInjector(LanguageActivator.ORG_ECLIPSE_DOCKER_LANGUAGE_CONTAINER);
     EventBus _instance_1 = injector.<EventBus>getInstance(EventBus.class);
     this.bus = _instance_1;
     MonitoringModel _monitoringModel = new MonitoringModel();

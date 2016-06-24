@@ -12,7 +12,7 @@ import org.eclipse.debug.core.model.ILaunchConfigurationDelegate
 import org.eclipse.debug.ui.ILaunchShortcut
 import org.eclipse.debug.ui.ILaunchShortcut2
 import org.eclipse.docker.language.container.Docker
-import org.eclipse.docker.language.ui.internal.ContainerActivator
+import org.eclipse.docker.language.ui.internal.LanguageActivator
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.ResourceSet
@@ -77,8 +77,8 @@ class RunContainerLauncher implements ILaunchShortcut, ILaunchShortcut2, ILaunch
 						var Object element = ((selection as IStructuredSelection)).getFirstElement()
 						if (element instanceof IFile) {
 							var IFile f = (element as IFile)
-							var Injector injector = ContainerActivator::getInstance().getInjector(
-								ContainerActivator::ORG_ECLIPSE_DOCKER_LANGUAGE_CONTAINER)
+							var Injector injector = LanguageActivator::getInstance().getInjector(
+								LanguageActivator::ORG_ECLIPSE_DOCKER_LANGUAGE_CONTAINER)
 							var ResourceSet instance = injector.getInstance(typeof(ResourceSet))
 							val createURI = URI::createFileURI(f.location.toOSString)
 							var Resource resource = instance.getResource(createURI, true)
@@ -106,8 +106,8 @@ class RunContainerLauncher implements ILaunchShortcut, ILaunchShortcut2, ILaunch
 						var element = URI.createFileURI(
 							((editor.editorInput as IFileEditorInput)).file.fullPath.toOSString)
 						
-							var Injector injector = ContainerActivator::getInstance().getInjector(
-								ContainerActivator::ORG_ECLIPSE_DOCKER_LANGUAGE_CONTAINER)
+							var Injector injector = LanguageActivator::getInstance().getInjector(
+								LanguageActivator::ORG_ECLIPSE_DOCKER_LANGUAGE_CONTAINER)
 							var ResourceSet instance = injector.getInstance(typeof(ResourceSet))
 
 							var Resource resource = instance.getResource(element, true)

@@ -7,7 +7,7 @@ import org.eclipse.docker.language.DockerConfig
 import org.eclipse.docker.language.TableModel.CData
 import org.eclipse.docker.language.TableModel.TModel
 import org.eclipse.docker.language.TableModel.TableModelFactory
-import org.eclipse.docker.language.ui.internal.ContainerActivator
+import org.eclipse.docker.language.ui.internal.LanguageActivator
 import org.eclipse.emf.common.util.EList
 import org.osgi.service.prefs.BackingStoreException
 import org.osgi.service.prefs.Preferences
@@ -28,8 +28,8 @@ class DockerPreferenceManager {
 			var String joinedHosts = Joiner.on("#").join(Hosts.getInstance().getHosts())
 			host.put("hosts", joinedHosts)
 			
-			var DockerConfig config = ContainerActivator.getInstance().getInjector(
-				ContainerActivator.ORG_ECLIPSE_DOCKER_LANGUAGE_CONTAINER).getInstance(DockerConfig)
+			var DockerConfig config = LanguageActivator.getInstance().getInjector(
+				LanguageActivator.ORG_ECLIPSE_DOCKER_LANGUAGE_CONTAINER).getInstance(DockerConfig)
 			var String certPath = config.getDockerCertPath()
 			host.put("certPath", certPath)
 			host.put("currentHost",config.uri)
@@ -58,8 +58,8 @@ class DockerPreferenceManager {
 				Hosts.getInstance().setHosts(hosts)
 			}
 		
-			var DockerConfig config = ContainerActivator.getInstance().getInjector(
-				ContainerActivator.ORG_ECLIPSE_DOCKER_LANGUAGE_CONTAINER).getInstance(DockerConfig)
+			var DockerConfig config = LanguageActivator.getInstance().getInjector(
+				LanguageActivator.ORG_ECLIPSE_DOCKER_LANGUAGE_CONTAINER).getInstance(DockerConfig)
 			var String certPath = host.get("certPath", null)
 			if(certPath !== null && !certPath.isEmpty()) config.setDockerCertPath(certPath)
 			var current = host.get("currentHost",null)

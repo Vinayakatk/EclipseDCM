@@ -7,7 +7,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.docker.language.container.Docker;
-import org.eclipse.docker.language.ui.internal.ContainerActivator;
+import org.eclipse.docker.language.ui.internal.LanguageActivator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -34,7 +34,7 @@ public class OpenDiagramHandler extends AbstractHandler {
      * {@inheritDoc}
      */
     public Object execute(final ExecutionEvent event) throws ExecutionException {
-    	Injector injector = ContainerActivator.getInstance().getInjector(ContainerActivator.ORG_ECLIPSE_DOCKER_LANGUAGE_CONTAINER);
+    	Injector injector = LanguageActivator.getInstance().getInjector(LanguageActivator.ORG_ECLIPSE_DOCKER_LANGUAGE_CONTAINER);
     	Docker docker = injector.getInstance(Docker.class);
 //        final ISelection selection = HandlerUtil.getCurrentSelection(event);
 

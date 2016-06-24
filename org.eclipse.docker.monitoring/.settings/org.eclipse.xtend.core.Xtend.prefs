@@ -1,3 +1,5 @@
+//outlet.DEFAULT_OUTPUT.sourceFolder.src/main/java.directory=xtend-gen
+//outlet.DEFAULT_OUTPUT.sourceFolder.src/test/java.directory=xtend-gen
 BuilderConfiguration.is_project_specific=true
 autobuilding=true
 eclipse.preferences.version=1
@@ -18,6 +20,6 @@ outlet.DEFAULT_OUTPUT.sourceFolder.src.directory=
 outlet.DEFAULT_OUTPUT.sourceFolder.src.ignore=
 outlet.DEFAULT_OUTPUT.sourceFolder.xtend-gen.directory=
 outlet.DEFAULT_OUTPUT.sourceFolder.xtend-gen.ignore=
-outlet.DEFAULT_OUTPUT.userOutputPerSourceFolder=
+outlet.DEFAULT_OUTPUT.userOutputPerSourceFolder=true
 targetJavaVersion=JAVA5
 useJavaCompilerCompliance=false

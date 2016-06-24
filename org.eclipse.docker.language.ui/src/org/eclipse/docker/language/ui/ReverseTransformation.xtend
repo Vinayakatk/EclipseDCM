@@ -3,7 +3,7 @@ package org.eclipse.docker.language.ui
 import java.util.List
 import org.eclipse.docker.language.TableModel.TableModelFactory
 import com.google.common.base.Splitter
-import org.eclipse.docker.language.ui.internal.ContainerActivator
+import org.eclipse.docker.language.ui.internal.LanguageActivator
 import com.google.inject.Injector
 import org.eclipse.docker.language.transformation.ContainerTransformation
 
@@ -13,7 +13,7 @@ class ReverseTransformation {
 //	ContainerTransformation transformation
 	
 	new() {
-//		injector = ContainerActivator.instance.getInjector(ContainerActivator.ORG_ECLIPSE_DOCKER_LANGUAGE_CONTAINER)
+//		injector = LanguageActivator.instance.getInjector(LanguageActivator.ORG_ECLIPSE_DOCKER_LANGUAGE_CONTAINER)
 //		transformation = injector.getInstance(ContainerTransformation)
 	}
 	

@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?>
-<target name="org.eclipse.docker.language.target" sequenceNumber="1">
+<?pde version="3.8"?><target name="org.eclipse.docker.language.target" sequenceNumber="9">
 <locations>
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+<unit id="org.eclipse.xtext.sdk.feature.group" version="0.0.0"/>
+<repository location="http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.9.1/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+<unit id="org.eclipse.emf.mwe2.launcher.feature.group" version="0.0.0"/>
+<repository location="http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.1/"/>
+</location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
 <unit id="org.eclipse.jdt.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.platform.feature.group" version="0.0.0"/>
@@ -14,12 +21,34 @@
 <repository location="http://download.eclipse.org/releases/mars/201506241002/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
-<unit id="org.eclipse.emf.mwe2.launcher.feature.group" version="0.0.0"/>
-<repository location="http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.1/"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
-<unit id="org.eclipse.xtext.sdk.feature.group" version="0.0.0"/>
-<repository location="http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.9.1/"/>
+<unit id="de.cau.cs.kieler.kiml.adaptagrams.feature.feature.group" version="0.1.0.201502261452"/>
+<unit id="de.cau.cs.kieler.sccharts.feature.source.feature.group" version="0.1.2.201605241451"/>
+<unit id="de.cau.cs.kieler.kiml.feature.feature.group" version="0.20.0.201602161004"/>
+<unit id="de.cau.cs.kieler.klighd.feature.source.feature.group" version="0.10.0.201602161004"/>
+<unit id="de.cau.cs.kieler.esterel.feature.source.feature.group" version="0.3.2.201605241451"/>
+<unit id="de.cau.cs.kieler.klighd.freehep.feature.feature.group" version="0.4.0.201602161004"/>
+<unit id="de.cau.cs.kieler.kiml.gmf.feature.source.feature.group" version="0.14.0.201602161004"/>
+<unit id="net.ogdf.bin.feature.feature.group" version="2.2.0.201602161004"/>
+<unit id="de.cau.cs.kieler.klighd.view.feature.source.feature.group" version="0.2.0.201602161004"/>
+<unit id="de.cau.cs.kieler.kgraph.feature.feature.group" version="0.9.0.201602161004"/>
+<unit id="de.cau.cs.kieler.kgraph.feature.source.feature.group" version="0.9.0.201602161004"/>
+<unit id="de.cau.cs.kieler.klighd.batik.feature.feature.group" version="0.2.0.201502261452"/>
+<unit id="de.cau.cs.kieler.klighd.view.feature.feature.group" version="0.2.0.201602161004"/>
+<unit id="de.cau.cs.kieler.klighd.sdk.feature.feature.group" version="0.8.0.201602161004"/>
+<unit id="de.cau.cs.kieler.kiml.ogdf.feature.source.feature.group" version="0.8.0.201602161004"/>
+<unit id="de.cau.cs.kieler.kiml.ogdf.feature.feature.group" version="0.8.0.201602161004"/>
+<unit id="de.cau.cs.kieler.klighd.freehep.feature.source.feature.group" version="0.4.0.201602161004"/>
+<unit id="de.cau.cs.kieler.kiml.adaptagrams.feature.source.feature.group" version="0.1.0.201502261452"/>
+<unit id="de.cau.cs.kieler.kiml.gmf.feature.feature.group" version="0.14.0.201602161004"/>
+<unit id="de.cau.cs.kieler.kiml.graphviz.feature.source.feature.group" version="0.10.0.201602161004"/>
+<unit id="de.cau.cs.kieler.klighd.batik.feature.source.feature.group" version="0.2.0.201502261452"/>
+<unit id="de.cau.cs.kieler.kiml.feature.source.feature.group" version="0.20.0.201602161004"/>
+<unit id="de.cau.cs.kieler.kiml.graphviz.feature.feature.group" version="0.10.0.201602161004"/>
+<unit id="de.cau.cs.kieler.klighd.sdk.feature.source.feature.group" version="0.8.0.201602161004"/>
+<unit id="de.cau.cs.kieler.kiml.graphiti.feature.feature.group" version="0.14.0.201602161004"/>
+<unit id="de.cau.cs.kieler.klighd.feature.feature.group" version="0.10.0.201602161004"/>
+<unit id="de.cau.cs.kieler.kiml.graphiti.feature.source.feature.group" version="0.14.0.201602161004"/>
+<repository location="http://rtsys.informatik.uni-kiel.de/~kieler/updatesite"/>
 </location>
 </locations>
 </target>
