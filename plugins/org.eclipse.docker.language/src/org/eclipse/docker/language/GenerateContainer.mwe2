@@ -9,13 +9,17 @@ Workflow {
 	
 	component = XtextGenerator {
 		configuration = {
+			
 			project = StandardProjectConfig {
+				
 				baseName = "org.eclipse.docker.language"
 				rootPath = rootPath
 				runtimeTest = {
+					
 					enabled = true
 				}
 				eclipsePlugin = {
+					
 					enabled = true
 				}
 				eclipsePluginTest = {
@@ -29,6 +33,8 @@ Workflow {
 			}
 		}
 		language = StandardLanguage {
+			
+			
 			name = "org.eclipse.docker.language.Container"
 			fileExtensions = "dcon"
 

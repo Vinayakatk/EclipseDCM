@@ -307,10 +307,6 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cContainersContainerParserRuleCall_4_0 = (RuleCall)cContainersAssignment_4.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
-		////ImportedSection returns ecore::EString:
-		////	
-		////	'Container-Section.*'
-		////;
 		//ContainerSection:
 		//	{ContainerSection}
 		//	'Container-Section' name=ID '{' containers+=Container* '}';
@@ -861,13 +857,6 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_5_35_3 = (Keyword)cGroup_5_35.eContents().get(3);
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
-		////Network:
-		////	'network' name=ID '{'  '}'
-		////;
-		////
-		////Volume:
-		////	'volume'  name=ID '{'  '}'
-		////;
 		//Container:
 		//	'container' name=ID '{' 'image-tag' image=STRING (('binds' '{' binds+=Bind+ '}')? & ('capabilityAdd' '{'
 		//	capabilityAdd+=Capability+ '}')? & ('capabilityDrop' '{' capabilityDrop+=Capability+ '}')? & ('commands' '{'
@@ -1487,12 +1476,6 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cAccessModeAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cAccessModeAccessModeEnumRuleCall_3_0 = (RuleCall)cAccessModeAssignment_3.eContents().get(0);
 		
-		////ManagedContainer returns Container:
-		////		'Managed'
-		////;
-		////ActiveContainer returns Container:
-		////	 'Active'
-		////;
 		//VolumesFrom:
 		//	'-' container=STRING ':' accessMode=AccessMode?;
 		@Override public ParserRule getRule() { return rule; }
@@ -3027,10 +3010,6 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		return getFQNAccess().getRule();
 	}
 	
-	////ImportedSection returns ecore::EString:
-	////	
-	////	'Container-Section.*'
-	////;
 	//ContainerSection:
 	//	{ContainerSection}
 	//	'Container-Section' name=ID '{' containers+=Container* '}';
@@ -3096,13 +3075,6 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		return getElongAccess().getRule();
 	}
 	
-	////Network:
-	////	'network' name=ID '{'  '}'
-	////;
-	////
-	////Volume:
-	////	'volume'  name=ID '{'  '}'
-	////;
 	//Container:
 	//	'container' name=ID '{' 'image-tag' image=STRING (('binds' '{' binds+=Bind+ '}')? & ('capabilityAdd' '{'
 	//	capabilityAdd+=Capability+ '}')? & ('capabilityDrop' '{' capabilityDrop+=Capability+ '}')? & ('commands' '{'
@@ -3126,12 +3098,6 @@ public class ContainerGrammarAccess extends AbstractGrammarElementFinder {
 		return getContainerAccess().getRule();
 	}
 	
-	////ManagedContainer returns Container:
-	////		'Managed'
-	////;
-	////ActiveContainer returns Container:
-	////	 'Active'
-	////;
 	//VolumesFrom:
 	//	'-' container=STRING ':' accessMode=AccessMode?;
 	public VolumesFromElements getVolumesFromAccess() {

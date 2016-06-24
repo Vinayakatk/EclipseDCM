@@ -14,15 +14,15 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 	<modules>
-		<module>../org.eclipse.docker.language</module>
-		<module>../org.eclipse.docker.language.ide</module>
-		<module>../org.eclipse.docker.language.ui</module>
+		<module>../../plugins/org.eclipse.docker.language</module>
+		<module>../../plugins/org.eclipse.docker.language.ide</module>
+		<module>../../plugins/org.eclipse.docker.language.ui</module>
 		<module>../org.eclipse.docker.language.target</module>
-		<module>../org.eclipse.docker.language.tests</module>
-		<module>../org.eclipse.docker.language.ui.tests</module>
-		<module>../org.eclipse.docker.dependency</module>
-		<module>../org.eclipse.docker.diagram</module>
-		<module>../org.eclipse.docker.monitoring</module>
+		<module>../../plugins/org.eclipse.docker.language.tests</module>
+		<module>../../plugins/org.eclipse.docker.language.ui.tests</module>
+		<module>../../plugins/org.eclipse.docker.dependency</module>
+		<module>../../plugins/org.eclipse.docker.diagram</module>
+		<module>../../plugins/org.eclipse.docker.monitoring</module>
 	</modules>
 	<build>
 		<plugins>

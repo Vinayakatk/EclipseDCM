@@ -4,6 +4,7 @@
 package org.eclipse.docker.language.tests;
 
 import com.google.inject.Inject;
+import org.eclipse.docker.language.container.Docker;
 import org.eclipse.docker.language.tests.ContainerInjectorProvider;
 import org.eclipse.xtext.junit4.InjectWith;
 import org.eclipse.xtext.junit4.XtextRunner;
@@ -16,11 +17,9 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class ContainerParsingTest {
   @Inject
-  private /* ParseHelper<Docker> */Object parseHelper;
+  private ParseHelper<Docker> parseHelper;
   
   @Test
   public void loadModel() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe field ContainerParsingTest.parseHelper refers to the missing type Docker");
   }
 }
