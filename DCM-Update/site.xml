@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.eclipse.docker.monitoring.feature_1.0.0.201606241351.jar" id="org.eclipse.docker.monitoring.feature" version="1.0.0.201606241351">
+      <category name="DCM"/>
+   </feature>
+   <category-def name="DCM" label="DCM"/>
+</site>
